@@ -1,0 +1,44 @@
+[
+{
+  "directory": "C:/Users/glado/Documents/CLion/Algorithmie & Eléments de Programmation 1/Mini-Projet/cmake-build-debug",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\gcc.exe -g -std=gnu11 -fdiagnostics-color=always -o CMakeFiles\\Mini_Projet.dir\\main.c.obj -c \"C:\\Users\\glado\\Documents\\CLion\\Algorithmie & Eléments de Programmation 1\\Mini-Projet\\main.c\"",
+  "file": "C:/Users/glado/Documents/CLion/Algorithmie & Eléments de Programmation 1/Mini-Projet/main.c",
+  "output": "C:/Users/glado/Documents/CLion/Algorithmie & Eléments de Programmation 1/Mini-Projet/cmake-build-debug/CMakeFiles/Mini_Projet.dir/main.c.obj"
+},
+{
+  "directory": "C:/Users/glado/Documents/CLion/Algorithmie & Eléments de Programmation 1/Mini-Projet/cmake-build-debug",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\gcc.exe -g -std=gnu11 -fdiagnostics-color=always -o CMakeFiles\\Mini_Projet.dir\\produit.c.obj -c \"C:\\Users\\glado\\Documents\\CLion\\Algorithmie & Eléments de Programmation 1\\Mini-Projet\\produit.c\"",
+  "file": "C:/Users/glado/Documents/CLion/Algorithmie & Eléments de Programmation 1/Mini-Projet/produit.c",
+  "output": "C:/Users/glado/Documents/CLion/Algorithmie & Eléments de Programmation 1/Mini-Projet/cmake-build-debug/CMakeFiles/Mini_Projet.dir/produit.c.obj"
+},
+{
+  "directory": "C:/Users/glado/Documents/CLion/Algorithmie & Eléments de Programmation 1/Mini-Projet/cmake-build-debug",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\gcc.exe -g -std=gnu11 -fdiagnostics-color=always -o CMakeFiles\\Mini_Projet.dir\\client.c.obj -c \"C:\\Users\\glado\\Documents\\CLion\\Algorithmie & Eléments de Programmation 1\\Mini-Projet\\client.c\"",
+  "file": "C:/Users/glado/Documents/CLion/Algorithmie & Eléments de Programmation 1/Mini-Projet/client.c",
+  "output": "C:/Users/glado/Documents/CLion/Algorithmie & Eléments de Programmation 1/Mini-Projet/cmake-build-debug/CMakeFiles/Mini_Projet.dir/client.c.obj"
+},
+{
+  "directory": "C:/Users/glado/Documents/CLion/Algorithmie & Eléments de Programmation 1/Mini-Projet/cmake-build-debug",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\gcc.exe -g -std=gnu11 -fdiagnostics-color=always -o CMakeFiles\\Mini_Projet.dir\\commande.c.obj -c \"C:\\Users\\glado\\Documents\\CLion\\Algorithmie & Eléments de Programmation 1\\Mini-Projet\\commande.c\"",
+  "file": "C:/Users/glado/Documents/CLion/Algorithmie & Eléments de Programmation 1/Mini-Projet/commande.c",
+  "output": "C:/Users/glado/Documents/CLion/Algorithmie & Eléments de Programmation 1/Mini-Projet/cmake-build-debug/CMakeFiles/Mini_Projet.dir/commande.c.obj"
+},
+{
+  "directory": "C:/Users/glado/Documents/CLion/Algorithmie & Eléments de Programmation 1/Mini-Projet/cmake-build-debug",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\gcc.exe -g -std=gnu11 -fdiagnostics-color=always -o CMakeFiles\\Mini_Projet.dir\\statistique.c.obj -c \"C:\\Users\\glado\\Documents\\CLion\\Algorithmie & Eléments de Programmation 1\\Mini-Projet\\statistique.c\"",
+  "file": "C:/Users/glado/Documents/CLion/Algorithmie & Eléments de Programmation 1/Mini-Projet/statistique.c",
+  "output": "C:/Users/glado/Documents/CLion/Algorithmie & Eléments de Programmation 1/Mini-Projet/cmake-build-debug/CMakeFiles/Mini_Projet.dir/statistique.c.obj"
+},
+{
+  "directory": "C:/Users/glado/Documents/CLion/Algorithmie & Eléments de Programmation 1/Mini-Projet/cmake-build-debug",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\gcc.exe -g -std=gnu11 -fdiagnostics-color=always -o CMakeFiles\\Mini_Projet.dir\\utils.c.obj -c \"C:\\Users\\glado\\Documents\\CLion\\Algorithmie & Eléments de Programmation 1\\Mini-Projet\\utils.c\"",
+  "file": "C:/Users/glado/Documents/CLion/Algorithmie & Eléments de Programmation 1/Mini-Projet/utils.c",
+  "output": "C:/Users/glado/Documents/CLion/Algorithmie & Eléments de Programmation 1/Mini-Projet/cmake-build-debug/CMakeFiles/Mini_Projet.dir/utils.c.obj"
+},
+{
+  "directory": "C:/Users/glado/Documents/CLion/Algorithmie & Eléments de Programmation 1/Mini-Projet/cmake-build-debug",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\gcc.exe -g -std=gnu11 -fdiagnostics-color=always -o CMakeFiles\\Mini_Projet.dir\\initialisation.c.obj -c \"C:\\Users\\glado\\Documents\\CLion\\Algorithmie & Eléments de Programmation 1\\Mini-Projet\\initialisation.c\"",
+  "file": "C:/Users/glado/Documents/CLion/Algorithmie & Eléments de Programmation 1/Mini-Projet/initialisation.c",
+  "output": "C:/Users/glado/Documents/CLion/Algorithmie & Eléments de Programmation 1/Mini-Projet/cmake-build-debug/CMakeFiles/Mini_Projet.dir/initialisation.c.obj"
+}
+]

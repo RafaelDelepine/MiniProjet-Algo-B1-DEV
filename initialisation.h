@@ -18,4 +18,6 @@ struct Boutique {
 
 void initialiserDonneesTest(struct Boutique *b);
 
+void detruireBoutique(struct Boutique *b);
+
 #endif //MINI_PROJET_INITIALISATION_H

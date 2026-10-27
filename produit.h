@@ -15,4 +15,4 @@ struct Produit {
     int quantiteStock;
     int seuilAlerte;
     int actif;
-}
+};

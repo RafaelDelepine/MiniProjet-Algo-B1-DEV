@@ -4,6 +4,7 @@
 
 #ifndef COMMANDE_H
 #define COMMANDE_H
+#include "client.h"
 
 struct Commande {
     int numero;
@@ -32,5 +33,7 @@ struct Commande {
     float fraisPort;
     struct Adresse adresseLivraison;
 };
+
+
 
 #endif

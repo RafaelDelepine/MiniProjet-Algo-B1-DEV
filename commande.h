@@ -22,7 +22,7 @@ struct Commande {
         char designation[60];
         int quantite;
         float prixUnitaireHT;
-        float sousTatalHT;
+        float sousTotalHT;
     };
     float montantBrut;
     float tauxRemise;

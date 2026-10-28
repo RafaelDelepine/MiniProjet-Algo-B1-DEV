@@ -20,7 +20,7 @@ struct Client {
     int pointsFidelite;
     int nbCommande;
     int capaciteCommandes;
-    /* ... Commande* ... */
+    Commande* Commandes = NULL;/* ... Commande* ... */
     int actif;
 };
 

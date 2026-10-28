@@ -6,10 +6,10 @@
 
 struct Boutique {
     char nom[50];
-    struct Produit* produits;
+    Produit* produits = NULL;
     int nbProduit;
     int capaciteProduits;
-    struct Client* client;
+    Client* clients = NULL;
     int nbClient;
     int capaciteClient;
     int numeroSuivant;

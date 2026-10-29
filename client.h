@@ -5,23 +5,6 @@
 #ifndef MINI_PROJET_CLIENT_H
 #define MINI_PROJET_CLIENT_H
 
-struct Client {
-    int idClient;
-    char nom[50];
-    char prenom[50];
-    char email[80];
-    char telephone[15];
-    struct Adresse {
-        char rue[80];
-        char ville[50];
-        char codePostal[6];
-        char pays[50];
-    } adresse;
-    int pointsFidelite;
-    int nbCommande;
-    int capaciteCommandes;
-    Commande* Commandes = NULL;/* ... Commande* ... */
-    int actif;
-};
+Client ajouterClient(Client *client);
 
 #endif //MINI_PROJET_CLIENT_H

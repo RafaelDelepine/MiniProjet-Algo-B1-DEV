@@ -5,6 +5,7 @@
 #include "initialisation.h"
 #include "produit.h"
 #include "statistique.h"
+#include "types.h"
 
 static int lireChoix(void)
 {
@@ -18,7 +19,7 @@ static int lireChoix(void)
 }
 
 /* --- Module PRODUITS ------------------------------------------------------ */
-void ajouterProduit(void)      { printf("  [STUB] ajouterProduit - a implementer dans produit.c\n"); }
+// void ajouterProduit(void)      { printf("  [STUB] ajouterProduit - a implementer dans produit.c\n"); }
 void modifierProduit(void)     { printf("  [STUB] modifierProduit - a implementer dans produit.c\n"); }
 void supprimerProduit(void)    { printf("  [STUB] supprimerProduit - a implementer dans produit.c\n"); }
 void afficherCatalogue(void)   { printf("  [STUB] afficherCatalogue - a implementer dans produit.c\n"); }
@@ -43,6 +44,7 @@ void afficherChiffreAffaires(void) { printf("  [STUB] afficherChiffreAffaires - 
 
 static void menuProduits(void)
 {
+    Produit *produit;
     int choix;
     do
     {
@@ -56,7 +58,10 @@ static void menuProduits(void)
 
         switch (choix)
         {
-            case 1: ajouterProduit();    break;
+            case 1: {
+                ajouterProduit(produit);
+                break;
+            }
             case 2: modifierProduit();   break;
             case 3: supprimerProduit();  break;
             case 4: afficherCatalogue(); break;

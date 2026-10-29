@@ -5,7 +5,6 @@
 #ifndef MINIPROJET_ALGO_B1_DEV_MAIN_TYPES_H
 #define MINIPROJET_ALGO_B1_DEV_MAIN_TYPES_H
 
-
 typedef struct  {
     char nom[50];
     struct Produit* produits;
@@ -48,11 +47,7 @@ typedef struct  {
     char pays[50];
 } adresse;
 
-
-
-
-
-struct  {
+typedef struct  {
     int numero;
     int idClient;
     char statut[20];

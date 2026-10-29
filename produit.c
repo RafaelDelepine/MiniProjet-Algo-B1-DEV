@@ -44,3 +44,49 @@ Produit ajouterProduit(Produit *produits) {
     while(produits[i].actif != 0 && produits[i].actif != 1);
     return *produits;
 }
+
+/* Fonction modifierProduit */
+#include <stdio.h>
+#include <stdlib.h>
+#include "produit.h"
+Produit modifierProduit(Produit *produits) {
+    /* Variables locales */
+    int nb_lig = 8;
+    int i;
+    char * Produit;
+    int nb_produit;
+
+    /* Affichage du tableau */
+    printf("Produits actuels :\n");
+    for (i=0 ; i<nb_lig ; i++) {
+        Produit = (char *) malloc(nb_lig * sizeof(char*));
+    }
+
+    /* Sélection du produit */
+    do {
+        printf("Entrez la ligne du produit à modifier (de 0 à 7) : ");
+        scanf("%d",nb_produit);
+    } while((nb_produit < 0) && (nb_produit > 8));
+    nb_produit = i;
+
+    /* Modification du produit */
+    do {
+        printf("\nNouveau prix unitaire HT" );
+        scanf("%.2f",produit[i].prixUnitaireHT);
+    } while (produit[i].prixUnitaireHT<1);
+    do {
+        printf("\nMise à jour du stock :" );
+        scanf("%d", produit[i].quantiteStock);
+    } while (produit[i].quantiteStock<0);
+    do {
+        printf("\nModification du seuil d'alerte :" );
+        scanf("%d",produit[i].seuilAlerte);
+    } while (produit[i].seuilAlerte<0);
+
+    /* Réaffichage du tableau mis à jour */
+    printf("\nListe des produits mise à jour :\n");
+    for (i=0 ; i<nb_lig ; i++) {
+        Produit = (char *) malloc(nb_lig * sizeof(char*));
+    }
+    return *produits;
+}

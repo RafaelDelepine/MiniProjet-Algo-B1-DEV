@@ -8,7 +8,7 @@ Produit ajouterProduit(Produit *produits) {
     int i = 0;
     do {
         printf("Saisir la reference commerciale du produit (SKU) :\n");
-        scanf("%s", produits[i].reference);
+        fgets(produits[i].reference, strlen(produits[i].reference), stdin);
         i++;
     }
     while(produits[i].reference[0] == '\0');
@@ -19,9 +19,9 @@ Produit ajouterProduit(Produit *produits) {
     while(produits[i].designation[0] == '\0');
     do {
         printf("Saisir la categorie du produit :\n");
-        scanf(" %s", produits[i].categorie);
+        fgets(produits[i].categorie, strlen(produits[i].categorie), stdin);
     }
-    while(produits[i].categorie[0]=='\0');
+    while(produits[i].categorie[0] == '\0');
     do {
         printf("Saisir le prix unitaire hors taxes du produit :\n");
         scanf(" %f", &produits[i].prixUnitaireHT);

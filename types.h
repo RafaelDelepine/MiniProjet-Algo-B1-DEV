@@ -46,7 +46,7 @@ typedef struct  {
     char ville[50];
     char codePostal[6];
     char pays[50];
-} Adresse;
+}Adresse;
 
 typedef struct  {
     int numero;
@@ -74,10 +74,10 @@ typedef struct  {
     float sousTotalHT;
 }LigneCommande;
 
-typedef struct Date {
+typedef struct {
     int jour;
     int mois;
     int annee;
-}dateCommande;
+}Date;
 
 #endif //MINIPROJET_ALGO_B1_DEV_MAIN_TYPES_H

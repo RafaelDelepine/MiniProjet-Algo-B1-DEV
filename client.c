@@ -1,37 +1,45 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "produit.h"
 #include "types.h"
+#include "client.h"
 
-Client ajouterClient(Client *client) {
-    clients= (Client*) malloc(2*sizeof(Client));
+
+Client ajouterClient(Client *client, [[maybe_unused]] Adresse *adresse) {
+    client= (Client*) malloc(2*sizeof(Client));
+    adresse = (Adresse*) malloc(2*sizeof(Adresse));
     int i = 0;
     do {
         printf("Saisir l'idClient :\n");
-        scanf("%s", clients[i].idClient);
+        scanf("%s", &client[i].idClient);
         i++;
     }
-    while(clients[i].idClient[0] == '\0');
+    while(client[i].idClient[0] == '\0');
     do {
         printf("Saisir le prénom du client :\n");
-        scanf("%s", clients[i].prenom);
-    while(clients[i].prenom[0] == '\0');
+        scanf("%s", &client[i].prenom);
+    }while(client[i].prenom[0] == '\0');
     do {
         printf("Saisir le nom du Client :\n");
-        scanf(" %s", clients[i].nom);
+        scanf(" %s", &client[i].nom);
     }
-    while(clients[i].nom[0]=='\0');
+    while(client[i].nom[0]=='\0');
     do {
         printf("Saisir l'adresse mail du client :\n");
-        scanf(" %f", &clients[i].mail);
+        scanf(" %f", &client[i].email);
     }
-    while(clients[i].mail <= 0);
+    while(client[i].email <= 0);
     do {
         printf("Saisir le numéro de téléphone du client :\n");
-        scanf(" %d", &clients[i].telephone);
+        scanf(" %d", &client[i].telephone);
     }
-    while(clients[i].telephone < 0);
+    while(client[i].telephone < 0);
 
-    return *clients;
+    do {
+        printf("Saisir la rue du client");
+        fgets(client[i].rue,sizeof(client[i]) , stdin);
+        client[i].rue[strlen(client[i].rue)-1]='\0'; # supprimer le '\n'
+    }while(client[i]-> adresse.rue < 0);
+
+    return *client;
 }

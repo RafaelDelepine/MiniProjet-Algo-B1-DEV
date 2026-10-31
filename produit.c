@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "fonctions.h"
+#include "produit.h"
+#include "types.h"
 
 Produit ajouterProduit(Produit *produits) {
     produits = (Produit*) malloc(2*sizeof(Produit));
@@ -48,15 +49,16 @@ Produit ajouterProduit(Produit *produits) {
 /* Fonction modifierProduit */
 Produit modifierProduit(Produit *produits) {
     /* Variables locales */
-    int nb_lig = 8;
-    int i;
-    char * Produit;
+    int nb_lig = 8, nb_col = 7;
+    int i,j;
     int nb_produit;
 
     /* Affichage du tableau */
     printf("Produits actuels :\n");
     for (i=0 ; i<nb_lig ; i++) {
-        Produit = (char *) malloc(nb_lig * sizeof(char*));
+        for(j=0 ; j<nb_col ; j++) {
+             printf("%s\t",produits[i][j]);
+        }
     }
 
     /* Sélection du produit */
@@ -69,21 +71,23 @@ Produit modifierProduit(Produit *produits) {
     /* Modification du produit */
     do {
         printf("\nNouveau prix unitaire HT" );
-        scanf("%.2f",&produits[i].prixUnitaireHT);
-    } while (&produits[i].prixUnitaireHT<1);
+        scanf("%.2f",&produits[i][4].prixUnitaireHT);
+    } while (produits[i][4].prixUnitaireHT<1);
     do {
         printf("\nMise à jour du stock :" );
-        scanf("%d", &produits[i].quantiteStock);
-    } while (&produits[i].quantiteStock<0);
+        scanf("%d", &produits[i][5].quantiteStock);
+    } while (produits[i][5].quantiteStock<0);
     do {
         printf("\nModification du seuil d'alerte :" );
-        scanf("%d",&produits[i].seuilAlerte);
-    } while (&produits[i].seuilAlerte<0);
+        scanf("%d",&produits[i][6].seuilAlerte);
+    } while (produits[i][6].seuilAlerte<0);
 
     /* Réaffichage du tableau mis à jour */
     printf("\nListe des produits mise à jour :\n");
     for (i=0 ; i<nb_lig ; i++) {
-        Produit = (char *) malloc(nb_lig * sizeof(char*));
+        for(j=0 ; j<nb_col ; j++) {
+             printf("%s\t",produits[i][j]);
+        }
     }
     return *produits;
 }

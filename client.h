@@ -5,6 +5,6 @@
 #ifndef MINI_PROJET_CLIENT_H
 #define MINI_PROJET_CLIENT_H
 
-Client ajouterClient(Client *client);
+Client ajouterClient(Client *client,Adresse *adresse);
 
 #endif //MINI_PROJET_CLIENT_H

@@ -71,16 +71,16 @@ Produit modifierProduit(Produit *produits) {
     /* Modification du produit */
     do {
         printf("\nNouveau prix unitaire HT" );
-        scanf("%.2f",&produits[i][4].prixUnitaireHT);
-    } while (produits[i][4].prixUnitaireHT<1);
+        scanf("%.2f",&produits[i].prixUnitaireHT);
+    } while (produits[i].prixUnitaireHT<1);
     do {
         printf("\nMise à jour du stock :" );
-        scanf("%d", &produits[i][5].quantiteStock);
-    } while (produits[i][5].quantiteStock<0);
+        scanf("%d", &produits[i].quantiteStock);
+    } while (produits[i].quantiteStock<0);
     do {
         printf("\nModification du seuil d'alerte :" );
-        scanf("%d",&produits[i][6].seuilAlerte);
-    } while (produits[i][6].seuilAlerte<0);
+        scanf("%d",&produits[i].seuilAlerte);
+    } while (produits[i].seuilAlerte<0);
 
     /* Réaffichage du tableau mis à jour */
     printf("\nListe des produits mise à jour :\n");

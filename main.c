@@ -20,8 +20,8 @@ static int lireChoix(void)
 
 /* --- Module PRODUITS ------------------------------------------------------ */
 // void ajouterProduit(void)      { printf("  [STUB] ajouterProduit - a implementer dans produit.c\n"); }
-void modifierProduit(void)     { printf("  [STUB] modifierProduit - a implementer dans produit.c\n"); }
-void supprimerProduit(void)    { printf("  [STUB] supprimerProduit - a implementer dans produit.c\n"); }
+// void modifierProduit(void)     { printf("  [STUB] modifierProduit - a implementer dans produit.c\n"); }
+// void supprimerProduit(void)    { printf("  [STUB] supprimerProduit - a implementer dans produit.c\n"); }
 void afficherCatalogue(void)   { printf("  [STUB] afficherCatalogue - a implementer dans produit.c\n"); }
 
 /* --- Module CLIENTS ------------------------------------------------------- */
@@ -44,7 +44,13 @@ void afficherChiffreAffaires(void) { printf("  [STUB] afficherChiffreAffaires - 
 
 static void menuProduits(void)
 {
-    Produit *produit;
+    int nb_lig = 8;
+    int nb_col = 7;
+    Produit **produit;
+    produit = (Produit**) malloc(nb_lig*sizeof(Produit));
+    for(int i = 0; i < nb_lig; i++) {
+        produit[i] = malloc(nb_col * sizeof(Produit));
+    }
     int choix;
     do
     {
@@ -59,11 +65,17 @@ static void menuProduits(void)
         switch (choix)
         {
             case 1: {
-                ajouterProduit(produit);
+                ajouterProduit(*produit);
                 break;
             }
-            case 2: modifierProduit();   break;
-            case 3: supprimerProduit();  break;
+            case 2: {
+                modifierProduit(*produit);
+                break;
+            }
+            case 3: {
+                supprimerProduit(*produit);
+                break;
+            }
             case 4: afficherCatalogue(); break;
             case 0:                      break; /* retour automatique */
             default: printf("  [!] Choix invalide.\n"); break;

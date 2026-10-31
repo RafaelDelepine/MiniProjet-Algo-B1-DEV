@@ -1,8 +1,14 @@
-#ifndef TEST_FONCTIONS_H
-#define TEST_FONCTIONS_H
+//
+// Created by glado on 23/10/2026.
+//
 
-Produit ajouterProduit(Produit *produits);
+#ifndef MINI_PROJET_PRODUIT_H
+#define MINI_PROJET_PRODUIT_H
+
+#include "types.h"
+
+Produit ajouterProduit(Produit *produit);
 Produit modifierProduit(Produit *produits);
 Produit supprimerProduit(Produit *produits);
 
-#endif //TEST_FONCTIONS_H
+#endif //MINI_PROJET_PRODUIT_H

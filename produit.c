@@ -46,9 +46,6 @@ Produit ajouterProduit(Produit *produits) {
 }
 
 /* Fonction modifierProduit */
-#include <stdio.h>
-#include <stdlib.h>
-#include "produit.h"
 Produit modifierProduit(Produit *produits) {
     /* Variables locales */
     int nb_lig = 8;
@@ -72,16 +69,16 @@ Produit modifierProduit(Produit *produits) {
     /* Modification du produit */
     do {
         printf("\nNouveau prix unitaire HT" );
-        scanf("%.2f",produit[i].prixUnitaireHT);
-    } while (produit[i].prixUnitaireHT<1);
+        scanf("%.2f",&produits[i].prixUnitaireHT);
+    } while (&produits[i].prixUnitaireHT<1);
     do {
         printf("\nMise à jour du stock :" );
-        scanf("%d", produit[i].quantiteStock);
-    } while (produit[i].quantiteStock<0);
+        scanf("%d", &produits[i].quantiteStock);
+    } while (&produits[i].quantiteStock<0);
     do {
         printf("\nModification du seuil d'alerte :" );
-        scanf("%d",produit[i].seuilAlerte);
-    } while (produit[i].seuilAlerte<0);
+        scanf("%d",&produits[i].seuilAlerte);
+    } while (&produits[i].seuilAlerte<0);
 
     /* Réaffichage du tableau mis à jour */
     printf("\nListe des produits mise à jour :\n");

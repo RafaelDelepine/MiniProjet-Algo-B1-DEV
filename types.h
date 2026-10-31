@@ -8,11 +8,11 @@
 typedef struct  {
     char nom[50];
     struct Produit* produits;
-    int nbProduit;
+    int nbProduits;
     int capaciteProduits;
     struct Client* clients;
-    int nbClient;
-    int capaciteClient;
+    int nbClients;
+    int capaciteClients;
     int numeroSuivant;
     int idClientSuivant;
 }Boutique;
@@ -33,10 +33,11 @@ typedef struct  {
     char prenom[50];
     char email[80];
     char telephone[15];
+    struct Adresse* adresseLivraison;
     int pointsFidelite;
-    int nbCommande;
+    int nbCommandes;
     int capaciteCommandes;
-    struct Commande* Commandes ;/* ... Commande* ... */
+    struct Commande* commandes ;/* ... Commande* ... */
     int actif;
 }Client;
 
@@ -45,22 +46,24 @@ typedef struct  {
     char ville[50];
     char codePostal[6];
     char pays[50];
-} adresse;
+} Adresse;
 
 typedef struct  {
     int numero;
     int idClient;
+    struct Date* dateCommande;
     char statut[20];
     int nbLignes;
     int capaciteLignes;
-    float montantBrut;
+    struct LigneCommande* lignes;
+    float montantBrutHT;
     float tauxRemise;
     float montantRemise;
     float montantHT;
     float montantTVA;
     float montantTTC;
     float fraisPort;
-    struct adresse adresseLivraison;
+    struct Adresse* adresseLivraison;
 }Commande;
 
 typedef struct  {

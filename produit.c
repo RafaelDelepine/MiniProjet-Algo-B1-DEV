@@ -8,11 +8,11 @@
 Produit ajouterProduit(Produit *produits) {
     /* Variables locales */
     int nbProduit = 0;
-    int i = nbProduit;
+    int i = nbProduit, nb_lig = 8;
 
     /* Affichage du tableau */
     printf("Produits actuels :\n");
-    for (i=0 ; i<8; i++) {
+    for (i=0 ; i<nb_lig; i++) {
         printf("%s, %s, %s, %f, %d, %d, %d\n", produits[i].reference, produits[i].designation, produits[i].categorie, produits[i].prixUnitaireHT, produits[i].quantiteStock, produits[i].seuilAlerte, produits[i].actif);
     }
     

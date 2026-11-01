@@ -4,8 +4,9 @@
 
 #ifndef COMMANDE_H
 #define COMMANDE_H
-#include "client.h"
 #include "types.h"
 
+Commande creerCommande(Commande *commande, Client *client, Date *date);
+Commande afficherUneCommande(Commande *commande);
 
 #endif

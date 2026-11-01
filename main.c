@@ -48,6 +48,14 @@ static void menuProduits(void)
     int nb_col = 7;
     Produit **produit;
     produit = (Produit**) malloc(nb_lig*sizeof(Produit));
+    Commande **commande;
+    commande = (Commande**) malloc(nb_lig*sizeof(Commande));
+    LigneCommande **ligneCommande;
+    ligneCommande = (LigneCommande**) malloc(nb_lig*sizeof(LigneCommande));
+    Client **client;
+    client = (client**) malloc(nb_lig*sizeof(Client));
+    Date **date;
+    date = (date**) malloc(nb_lig*sizeof(Date));
     for(int i = 0; i < nb_lig; i++) {
         produit[i] = malloc(nb_col * sizeof(Produit));
     }

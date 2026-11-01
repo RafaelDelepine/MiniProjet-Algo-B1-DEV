@@ -14,16 +14,16 @@ Client ajouterClient(Client *client, [[maybe_unused]] Adresse *adresse) {
         scanf("%s", &client[i].idClient);
         i++;
     }
-    while(client[i].idClient[0] == '\0');
+    while(client[i].idClient == '\0');
     do {
         printf("Saisir le prénom du client :\n");
         scanf("%s", &client[i].prenom);
-    }while(client[i].prenom[0] == '\0');
+    }while(client[i].prenom == '\0');
     do {
         printf("Saisir le nom du Client :\n");
         scanf(" %s", &client[i].nom);
     }
-    while(client[i].nom[0]=='\0');
+    while(client[i].nom =='\0');
     do {
         printf("Saisir l'adresse mail du client :\n");
         scanf(" %f", &client[i].email);

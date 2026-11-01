@@ -12,7 +12,7 @@ Produit ajouterProduit(Produit *produits) {
 
     /* Affichage du tableau */
     printf("Produits actuels :\n");
-    for (i=0 ; i<nb_lig ; i++) {
+    for (i=0 ; i<8; i++) {
         printf("%s, %s, %s, %f, %d, %d, %d\n", produits[i].reference, produits[i].designation, produits[i].categorie, produits[i].prixUnitaireHT, produits[i].quantiteStock, produits[i].seuilAlerte, produits[i].actif);
     }
     

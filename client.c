@@ -32,14 +32,43 @@ Client ajouterClient(Client *client, [[maybe_unused]] Adresse *adresse) {
     do {
         printf("Saisir le numéro de téléphone du client :\n");
         scanf(" %d", &client[i].telephone);
-    }
-    while(client[i].telephone < 0);
+    }while(client[i].telephone < 0);
 
+    // adresse du clients
     do {
         printf("Saisir la rue du client");
-        fgets(client[i].rue,sizeof(client[i]) , stdin);
-        client[i].rue[strlen(client[i].rue)-1]='\0'; # supprimer le '\n'
-    }while(client[i]-> adresse.rue < 0);
+        fgets(adresse[i].rue,sizeof(adresse[i]) , stdin);
+        adresse[i].rue[strlen(adresse[i].rue)-1]='\0'; //supprimer le '\n'
+    }while(adresse[i].rue < 0 && adresse[i].rue > 79 );
 
+
+    do {
+        printf("Saisir la ville du client");
+        fgets(adresse[i].ville,sizeof(adresse[i]) , stdin);
+        adresse[i].ville[strlen(adresse[i].ville)-1]='\0'; // supprimer le '\n'
+    }while(adresse[i].ville < 0);
+
+    do {
+        printf("Saisir le code postal du client");
+        fgets(adresse[i].codePostal,sizeof(adresse[i]) , stdin);
+        adresse[i].codePostal[strlen(adresse[i].codePostal)-1]='\0'; // supprimer le '\n'
+    }while(adresse[i].codePostal >5);
+
+    do {
+        printf("Saisir le pays du client");
+        fgets(adresse[i].pays,sizeof(adresse[i]) , stdin);
+        adresse[i].pays[strlen(adresse[i].pays)-1]='\0'; // supprimer le '\n'
+    }while(adresse[i].pays <0);
+
+    //suite de client
+    do {
+        printf("Saisir le nombre de point de fidélité du client :\n");
+        scanf(" %d", &client[i].pointsFidelite);
+    }while(client[i].pointsFidelite >= 0);
+
+    do {
+        printf("Saisir le nb de commandes du client :\n");
+        scanf(" %d", &client[i].nbCommandes);
+    }while(client[i].nbCommandes >= 0);
     return *client;
 }

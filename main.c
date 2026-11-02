@@ -56,6 +56,8 @@ static void menuProduits(void)
     client = (client**) malloc(nb_lig*sizeof(Client));
     Date **date;
     date = (date**) malloc(nb_lig*sizeof(Date));
+    Adresse **adresse;
+    adresse = (Adresse**) malloc(nb_lig*sizeof(Adresse));
     for(int i = 0; i < nb_lig; i++) {
         produit[i] = malloc(nb_col * sizeof(Produit));
     }

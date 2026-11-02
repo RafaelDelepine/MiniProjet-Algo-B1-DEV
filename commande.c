@@ -6,63 +6,58 @@
 
 #include "types.h"
 
-Commande creerCommande(Commande *commande, LigneCommande *ligneCommande, Client *client, Date *date) {
+Commande creerCommande(Commande *commande, LigneCommande *ligneCommande, Client *client, Date *date, Adresse *adresse, Produit *produits) {
 /* Variables locales */
     int numCommande = 0;
-    int i = numCommande, nb_lig = 6;
+    int i = numCommande, nb_lig_commandes = 6, nb_lig_clients = 5, nb_lig_produit = 8;
 
-    /* Affichage du tableau */
-    printf("Commande actuelles :\n");
-    for (i=0 ; i<nb_lig; i++) {
-        printf("%d. %d, %d, %d/%d/%d, %s, %s, %s, %d\n", i, commande[i].numero, client[i].idClient, date[i].jour, date[i].mois, date[i].annee, commande[i].statut, ligneCommande[i].refProduit, ligneCommande[i].designation, ligneCommande[i].quantite, commande[i].montantBrut, commande[i].tauxRemise, commande[i].montantRemise, commande[i].montantHT, commande[i].);
+    /* Affichage des commandes */
+    printf("Commandes actuelles :\n");
+    for (i=0 ; i<nb_lig_commandes; i++) {
+        printf("%d. %d, %d, %d/%d/%d, %s, %s, %s, %d, %.2f, %.2f, %.2f, %.2f, %.2f, %.2f, %s, %s, %s, %s\n", i, commande[i].numero, client[i].idClient, date[i].jour, date[i].mois, date[i].annee, commande[i].statut, ligneCommande[i].refProduit, ligneCommande[i].designation, ligneCommande[i].quantite, commande[i].montantBrut, commande[i].montantHT, commande[i].montantRemise, commande[i].montantTVA, commande[i].montantTTC, commande[i].fraisPort, adresse[i].rue, adresse[i].ville, adresse[i].codePostal, adresse[i].pays);
+    }
+    char r;
+    do {
+        printf("Souhaitez-vous ajouter une commande ? (O/N)\n");
+        scanf("%c", &r);
+    }while(r != 'O' || r != 'N');
+    if (r == 'O') {
+        /* Affichage des clients */
+        printf("Clients actuels :\n");
+        for (i=0 ; i<nb_lig_clients; i++) {
+            printf("%d. %d, %s, %s, %s, %s, %s, %s, %s, %s, %d, %d, %d, %d\n", i, client[i].idClient, client[i].nom, client[i].prenom, client[i].email, client[i].telephone, adresse[i].rue, adresse[i].ville, adresse[i].codePostal, adresse[i].pays, client[i].pointsFidelite, client[i].nbCommande, client[i].capaciteCommandes, client[i].actif);
+        }
+        /* Choix du client concerné */
+        int choixClient;
+        do {
+            printf("Entrez le numéro du client :\n");
+            scanf("%d", choixClient);
+        }while(choixClient < 0 || choixClient > nb_lig_clients);
+        /* Ajout de la commande */
+        /* Saisie du nombre de produits commandés */
+        nb_lig_commandes++;
+        int nbCommade;
+        do {
+            printf("Entrez le nombre de produits commandés :\n");
+            scanf("%d", nbCommade);
+        }while(nbCommade < 1);
+        /* Affichage de l'inventaire */
+        printf("Produits actuels :\n");
+        for (i=0 ; i<nb_lig_produit; i++) {
+            printf("%d. %s, %s, %s, %f, %d, %d, %d\n", i, produits[i].reference, produits[i].designation, produits[i].categorie, produits[i].prixUnitaireHT, produits[i].quantiteStock, produits[i].seuilAlerte, produits[i].actif);
+        }
+        /* Saisie du produit commandé */
+        int choixProduit;
+        do {
+            printf("Entrez le numéro du produit commandé :\n");
+            scanf("%d", choixProduit);
+        }while((choixProduit < 0 || choixProduit > nb_lig_produit) && produits[i].quantiteStock != 0);
     }
 
-    /* Ajout du produit */
-    /* Reference commerciale */
-    do {
-        printf("Saisir la reference commerciale du produit (SKU) :\n");
-        scanf("%s", produits[i].reference);
-    }while(produits[i].reference[0]=='\0');
-    /* Libele du produit */
-    do {
-        printf("Saisir le libele du produit :\n");
-        fgets(produits[i].designation, strlen(produits[i].designation), stdin);
-    }while(produits[i].designation[0]=='\0');
-    /* Categorie du produit */
-    do {
-        printf("Saisir la categorie du produit :\n");
-        scanf("%s", produits[i].categorie);
-    }while(produits[i].categorie[0]=='\0');
-    /* Prix unitaire HT */
-    do {
-        printf("Saisir le prix unitaire hors taxes du produit :\n");
-        scanf("%f", &produits[i].prixUnitaireHT);
-    }while(produits[i].prixUnitaireHT <= 0);
-    /* Stock restant */
-    do {
-        printf("Saisir le stock disponible du produit :\n");
-        scanf("%d", &produits[i].quantiteStock);
-    }while(produits[i].quantiteStock < 0);
-    /* Seuil alerte */
-    do {
-        printf("Saisir le seuil de réapprovisionnement du produit :\n");
-        scanf("%d", &produits[i].seuilAlerte);
-    }while(produits[i].seuilAlerte < 0);
-    /* Actif ou non */
-    do {
-        printf("Le produit est-il actif (1 = oui, 0 = non) ?\n");
-        scanf("%d", &produits[i].actif);
-    }while(produits[i].actif != 0 && produits[i].actif != 1);
-
-    /* Réaffichage du tableau mis à jour */
-    printf("\nListe des produits mise à jour :\n");
-    for (i=0 ; i<nb_lig ; i++) {
-        printf("%s, %s, %s, %f, %d, %d, %d", produits[i].reference, produits[i].designation, produits[i].categorie, produits[i].prixUnitaireHT, produits[i].quantiteStock, produits[i].seuilAlerte, produits[i].actif);
-    }
-    return *produits;
+    return *commande;
 }
 
-Commande afficherUneCommande(Commande *commande) {
-
-}
+// Commande afficherUneCommande(Commande *commande) {
+//
+// }
 

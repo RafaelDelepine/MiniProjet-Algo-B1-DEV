@@ -6,7 +6,7 @@
 #define COMMANDE_H
 #include "types.h"
 
-Commande creerCommande(Commande *commande, Client *client, Date *date);
+Commande creerCommande(Commande *commande, LigneCommande *ligneCommande, Client *client, Date *date, Adresse *adresse, Produit *produits);
 Commande afficherUneCommande(Commande *commande);
 
 #endif

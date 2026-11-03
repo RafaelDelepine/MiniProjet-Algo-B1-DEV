@@ -151,4 +151,22 @@ Produit supprimerProduit(Produit *produits, LigneCommande *lignecommande) {
         return *produits;
     }
 
+
+/* Fonction afficherCatalogue */
+Produit afficherCatalogue(Produit *produits){
+    /* Variables locales */
+    int nb_lig = 8;
+    int i;
+
+    /* Affichage du tableau */
+    printf("Produits actuels :\n");
+    for (i=0 ; i<nb_lig ; i++) {
+        printf("%s, %s, %s, %f, %d, %d, %d", produits[i].reference, produits[i].designation, produits[i].categorie, produits[i].prixUnitaireHT, produits[i].quantiteStock, produits[i].seuilAlerte, produits[i].actif);
+    }
+    return *produits;
+    }
+
+
 /* Fonction rechercheProduit */
+Produit rechercheProduit(Produit *produits){
+    }    

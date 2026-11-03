@@ -5,9 +5,12 @@
 #include "client.h"
 
 
-Client ajouterClient(Client *client, [[maybe_unused]] Adresse *adresse) {
+char ** Commandes;
+
+Client ajouterClient(Client *client,  Adresse *adresse, Commande *commande) {
     client= (Client*) malloc(2*sizeof(Client));
     adresse = (Adresse*) malloc(2*sizeof(Adresse));
+    commande = (Commande*) malloc(2*sizeof(Commande));
     int i = 0;
     do {
         printf("Saisir l'idClient :\n");
@@ -63,12 +66,26 @@ Client ajouterClient(Client *client, [[maybe_unused]] Adresse *adresse) {
     //suite de client
     do {
         printf("Saisir le nombre de point de fidélité du client :\n");
-        scanf(" %d", &client[i].pointsFidelite);
+        scanf(" %d", &client[i].pointsFidelite); // NOLINT(*-err34-c)
     }while(client[i].pointsFidelite >= 0);
 
     do {
         printf("Saisir le nb de commandes du client :\n");
-        scanf(" %d", &client[i].nbCommandes);
+        scanf(" %d", &client[i].nbCommandes); // NOLINT(*-err34-c)
     }while(client[i].nbCommandes >= 0);
+
+    do {
+        printf("Saisir la capacite de commandes du clients :\n");
+        scanf(" %d", &client[i].capaciteCommandes);
+    }while (client[i].capaciteCommandes >= client[i].nbCommandes);
+
+    do {
+        printf("Afficher l'historique des commandes du clients");
+        fgets(*Commandes,sizeof(commande[i]) , stdin);
+    };
+    do {
+        printf(" Saisir si le client est actif : 1 ou inactif : 0 ");
+        scanf("%d",&client[i].actif);
+    };
     return *client;
 }

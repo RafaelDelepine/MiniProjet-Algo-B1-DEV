@@ -31,8 +31,8 @@ void supprimerClient(void)     { printf("  [STUB] supprimerClient - a implemente
 void afficherListeClients(void){ printf("  [STUB] afficherListeClients - a implementer dans client.c\n"); }
 
 /* --- Module COMMANDES ----------------------------------------------------- */
-void creerCommande(void)       { printf("  [STUB] creerCommande - a implementer dans commande.c\n"); }
-void afficherUneCommande(void) { printf("  [STUB] afficherUneCommande - a implementer dans commande.c\n"); }
+// void creerCommande(void)       { printf("  [STUB] creerCommande - a implementer dans commande.c\n"); }
+// void afficherUneCommande(void) { printf("  [STUB] afficherUneCommande - a implementer dans commande.c\n"); }
 
 /* --- Module STATISTIQUES -------------------------------------------------- */
 void afficherChiffreAffaires(void) { printf("  [STUB] afficherChiffreAffaires - a implementer dans statistique.c\n"); }
@@ -41,26 +41,24 @@ void afficherChiffreAffaires(void) { printf("  [STUB] afficherChiffreAffaires - 
  * SOUS-MENUS : un seul motif a retenir, applique 4 fois.
  * Pour ajouter une fonctionnalite : un printf + un case + la borne max.
  * ========================================================================== */
+/* A mettre dans initialisation.c : */
+int nb_lig_commandes = 6, nb_lig_lcommandes = 6, nb_lig_dates = 6, nb_lig_adresses = 5, nb_lig_clients = 5, nb_lig_produit = 8;
+
+Produit **produit;
+produit = (Produit**) malloc(nb_lig_produit*sizeof(Produit));
+Commande **commande;
+commande = (Commande**) malloc(nb_lig_commandes*sizeof(Commande));
+LigneCommande **ligneCommande;
+ligneCommande = (LigneCommande**) malloc(nb_lig_lcommandes*sizeof(LigneCommande));
+Client **client;
+client = (Client**) malloc(nb_lig_clients*sizeof(Client));
+Date **date;
+date = (Date**) malloc(nb_lig_dates*sizeof(Date));
+Adresse **adresse;
+adresse = (Adresse**) malloc(nb_lig_adresses*sizeof(Adresse));
 
 static void menuProduits(void)
 {
-    int nb_lig = 8;
-    int nb_col = 7;
-    Produit **produit;
-    produit = (Produit**) malloc(nb_lig*sizeof(Produit));
-    Commande **commande;
-    commande = (Commande**) malloc(nb_lig*sizeof(Commande));
-    LigneCommande **ligneCommande;
-    ligneCommande = (LigneCommande**) malloc(nb_lig*sizeof(LigneCommande));
-    Client **client;
-    client = (client**) malloc(nb_lig*sizeof(Client));
-    Date **date;
-    date = (date**) malloc(nb_lig*sizeof(Date));
-    Adresse **adresse;
-    adresse = (Adresse**) malloc(nb_lig*sizeof(Adresse));
-    for(int i = 0; i < nb_lig; i++) {
-        produit[i] = malloc(nb_col * sizeof(Produit));
-    }
     int choix;
     do
     {
@@ -129,10 +127,14 @@ static void menuCommandes(void)
         printf("  0. Retour au menu principal\n");
         choix = lireChoix();
 
-        switch (choix)
-        {
-            case 1: creerCommande();       break;
+        switch (choix) {
+            case 1: {
+                creerCommande(*commande, *ligneCommande, *client, *date, *adresse, *produits, *nb_lig_commandes, *nb_lig_clients, *nb_lig_produit);
+                break;
+            }
             case 2: afficherUneCommande(); break;
+            // case 3:
+            // case 4:
             case 0:                        break;
             default: printf("  [!] Choix invalide.\n"); break;
         }

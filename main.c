@@ -22,7 +22,7 @@ static int lireChoix(void)
 // void ajouterProduit(void)      { printf("  [STUB] ajouterProduit - a implementer dans produit.c\n"); }
 // void modifierProduit(void)     { printf("  [STUB] modifierProduit - a implementer dans produit.c\n"); }
 // void supprimerProduit(void)    { printf("  [STUB] supprimerProduit - a implementer dans produit.c\n"); }
-void afficherCatalogue(void)   { printf("  [STUB] afficherCatalogue - a implementer dans produit.c\n"); }
+//void afficherCatalogue(void)   { printf("  [STUB] afficherCatalogue - a implementer dans produit.c\n"); }
 
 /* --- Module CLIENTS ------------------------------------------------------- */
 void ajouterClient(void)       { printf("  [STUB] ajouterClient - a implementer dans client.c\n"); }
@@ -67,6 +67,7 @@ static void menuProduits(void)
         printf("  2. Modifier un produit\n");
         printf("  3. Supprimer un produit\n");
         printf("  4. Afficher le catalogue\n");
+        printf("  5. Rechercher un produit\n");
         printf("  0. Retour au menu principal\n");
         choix = lireChoix();
 
@@ -84,7 +85,8 @@ static void menuProduits(void)
                 supprimerProduit(*produit);
                 break;
             }
-            case 4: afficherCatalogue(); break;
+            case 4: afficherCatalogue(*produits); break;
+            case 5: rechercherProduit(*produits); break;
             case 0:                      break; /* retour automatique */
             default: printf("  [!] Choix invalide.\n"); break;
         }

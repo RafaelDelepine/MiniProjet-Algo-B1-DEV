@@ -25,10 +25,10 @@ static int lireChoix(void)
 //void afficherCatalogue(void)   { printf("  [STUB] afficherCatalogue - a implementer dans produit.c\n"); }
 
 /* --- Module CLIENTS ------------------------------------------------------- */
-void ajouterClient(void)       { printf("  [STUB] ajouterClient - a implementer dans client.c\n"); }
-void modifierClient(void)      { printf("  [STUB] modifierClient - a implementer dans client.c\n"); }
-void supprimerClient(void)     { printf("  [STUB] supprimerClient - a implementer dans client.c\n"); }
-void afficherListeClients(void){ printf("  [STUB] afficherListeClients - a implementer dans client.c\n"); }
+//void ajouterClient(void)       { printf("  [STUB] ajouterClient - a implementer dans client.c\n"); }
+//void modifierClient(void)      { printf("  [STUB] modifierClient - a implementer dans client.c\n"); }
+//void supprimerClient(void)     { printf("  [STUB] supprimerClient - a implementer dans client.c\n"); }
+//void afficherListeClients(void){ printf("  [STUB] afficherListeClients - a implementer dans client.c\n"); }
 
 /* --- Module COMMANDES ----------------------------------------------------- */
 // void creerCommande(void)       { printf("  [STUB] creerCommande - a implementer dans commande.c\n"); }

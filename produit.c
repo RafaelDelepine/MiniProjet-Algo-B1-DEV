@@ -8,11 +8,11 @@
 Produit ajouterProduit(Produit *produits) {
     /* Variables locales */
     int nbProduit = 0;
-    int i = nbProduit, nb_lig = 8;
+    int i = nbProduit,nb_lig = 8;
 
     /* Affichage du tableau */
     printf("Produits actuels :\n");
-    for (i=0 ; i<nb_lig; i++) {
+    for (i=0 ; i<nb_lig ; i++) {
         printf("%s, %s, %s, %f, %d, %d, %d\n", produits[i].reference, produits[i].designation, produits[i].categorie, produits[i].prixUnitaireHT, produits[i].quantiteStock, produits[i].seuilAlerte, produits[i].actif);
     }
     
@@ -61,6 +61,7 @@ Produit ajouterProduit(Produit *produits) {
     return *produits;
 }
 
+
 /* Fonction modifierProduit */
 Produit modifierProduit(Produit * produits) {
     /* Variables locales */
@@ -79,7 +80,7 @@ Produit modifierProduit(Produit * produits) {
         printf("Entrez la ligne du produit à modifier (de 0 à 7) : ");
         scanf("%d",nb_produit);
     } while((nb_produit < 0) && (nb_produit > 8));
-    nb_produit = i;
+    i = nb_produit;
 
     /* Modification du produit */
     /* Nouveaux prix HT */
@@ -106,12 +107,14 @@ Produit modifierProduit(Produit * produits) {
     return *produits;
 }
 
+
 /* Fonction supprimerProduit */
-Produit supprimerProduit(Produit *produits) {
+Produit supprimerProduit(Produit *produits, LigneCommande *lignecommande) {
     /* Variables locales */
     int nb_lig = 8;
-    int i;
-    int nbProduit = 0;
+    int i,j;
+    int nb_produit;
+    char choix;
 
     /* Affichage du tableau */
     printf("Produits actuels :\n");
@@ -122,8 +125,28 @@ Produit supprimerProduit(Produit *produits) {
     /* Sélection du produit à supprimer */
     do {
         printf("Entrez la ligne du produit à supprimer (de 0 à 7) : ");
-        scanf("%d",nbProduit);
-    } while((nbProduit < 0) && (nbProduit > 8));
-    printf("Produits actuels :\n");
-    nbProduit = i;
-}
+        scanf("%d",nb_produit);
+    } while((nb_produit < 0) && (nb_produit > 8));
+    i = nb_produit;
+
+    /* Annulation de la supression du produit car présente dans une commande */
+    for (j=0 ; j<6 ; j++) {
+        if (lignecommande[j].designation == produits[i].designation) {
+            //manque déclaration tableau ligne commande
+            printf("ERREUR : produit présent dans l'une des commandes\nAnnulation de la suppression du produit");
+            return *produits;
+        }
+    }
+
+    /* Suppression du produit après confirmation */
+    printf("Voulez-vous réellement supprimer le produit %s, %s du catalogue ? (O/N)", produits[i].reference, produits[i].designation);
+    scanf("%c",&choix);
+    if (choix == 'N') {
+        printf("Annulation de la suppression du produit");
+        return *produits;
+    }
+    else {
+        free(&produits[i]);
+        produits = NULL;
+        return *produits;
+    }

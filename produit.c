@@ -167,6 +167,9 @@ Produit afficherCatalogue(Produit *produits){
     }
 
 
-/* Fonction rechercheProduit */
-Produit rechercheProduit(Produit *produits){
+/* Fonction rechercherProduit */
+Produit rechercherProduit(Produit *produits){
+    /* Variables locales */
+    char reference_produit[12];
+    int i, 
     }    

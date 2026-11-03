@@ -9,6 +9,8 @@
 
 Produit ajouterProduit(Produit *produit);
 Produit modifierProduit(Produit *produits);
-Produit supprimerProduit(Produit *produits);
+Produit supprimerProduit(Produit *produits, LigneCommande *lignecommande);
+Produit afficherCatalogue(Produit *produits);
+Produit rechercherProduit(Produit *produits);
 
 #endif //MINI_PROJET_PRODUIT_H

@@ -150,3 +150,5 @@ Produit supprimerProduit(Produit *produits, LigneCommande *lignecommande) {
         produits = NULL;
         return *produits;
     }
+
+/* Fonction rechercheProduit */

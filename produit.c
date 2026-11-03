@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "produit.h"
 #include <string.h>
+#include "produit.h"
 #include "types.h"
 
 /* Fonction ajouterProduit */
@@ -15,7 +15,7 @@ Produit ajouterProduit(Produit *produits) {
     for (i=0 ; i<nb_lig ; i++) {
         printf("%s, %s, %s, %f, %d, %d, %d\n", produits[i].reference, produits[i].designation, produits[i].categorie, produits[i].prixUnitaireHT, produits[i].quantiteStock, produits[i].seuilAlerte, produits[i].actif);
     }
-    
+
     /* Ajout du produit */
     /* Reference commerciale */
     do {
@@ -68,7 +68,7 @@ Produit modifierProduit(Produit * produits) {
     int nb_lig = 8;
     int i;
     int nb_produit;
-    
+
     /* Affichage du tableau */
     printf("Produits actuels :\n");
     for (i=0 ; i<nb_lig ; i++) {
@@ -112,7 +112,7 @@ Produit modifierProduit(Produit * produits) {
 Produit supprimerProduit(Produit *produits, LigneCommande *lignecommande) {
     /* Variables locales */
     int nb_lig = 8;
-    int i,j;
+    int i,j,comp;
     int nb_produit;
     char choix;
 
@@ -131,7 +131,8 @@ Produit supprimerProduit(Produit *produits, LigneCommande *lignecommande) {
 
     /* Annulation de la supression du produit car présente dans une commande */
     for (j=0 ; j<6 ; j++) {
-        if (lignecommande[j].designation == produits[i].designation) {
+        comp = strcmp(lignecommande[j].designation, produits[i].reference);
+        if (comp == 0) {
             //manque déclaration tableau ligne commande
             printf("ERREUR : produit présent dans l'une des commandes\nAnnulation de la suppression du produit");
             return *produits;
@@ -171,5 +172,19 @@ Produit afficherCatalogue(Produit *produits){
 Produit rechercherProduit(Produit *produits){
     /* Variables locales */
     char reference_produit[12];
-    int i, 
-    }    
+    int i, nb_lig = 8, comp;
+
+    /* Recherche du produit grâce à la référence */
+    printf("Entrez la référence du produit: ");
+    scanf("%s",reference_produit);
+    for (i=0 ; i<nb_lig ; i++) {
+        comp = strcmp(reference_produit,produits[i].reference);
+        if (comp == 0) {
+            printf("\nProduit trouvé : %s, %s", produits[i].reference, produits[i].designation);
+            return *produits;
+        }
+        else {
+            printf("La référence entrée ne correspond à aucun produit du catalogue");
+            return *produits;
+        }
+    }

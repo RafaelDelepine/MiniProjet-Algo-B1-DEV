@@ -8,13 +8,12 @@
 
 Commande creerCommande(Commande *commande, LigneCommande *ligneCommande, Client *client, Date *date, Adresse *adresse, Produit *produits, int *nb_lig_commandes, int *nb_lig_clients, int *nb_lig_produit) {
     /* Variables locales */
-    int numCommande = *nb_lig_commandes;
-    int i, nbCommade, choixClient, choixProduit, qteProduit;
+    int i, nbCommade, numCommande, choixClient, choixProduit, qteProduit;
     char r;
     /* Affichage des commandes */
     printf("Commandes actuelles :\n");
     for (i=0 ; i < *nb_lig_commandes; i++) {
-        printf("%d. %d, %d, %d/%d/%d, %s, %s, %s, %d, %.2f, %.2f, %s, %s, %s, %s\n", i + 1, commande[i].numero, client[i].idClient, date[i].jour, date[i].mois, date[i].annee, commande[i].statut, ligneCommande[i].refProduit, ligneCommande[i].designation, ligneCommande[i].quantite, commande[i].montantTTC, commande[i].fraisPort, adresse[i].rue, adresse[i].ville, adresse[i].codePostal, adresse[i].pays);
+        printf("%d. %d, %d, %d/%d/%d, %s, %.2f, %.2f, %s, %s, %s, %s\n", i + 1, commande[i].numero, client[i].idClient, date[i].jour, date[i].mois, date[i].annee, commande[i].statut, commande[i].montantTTC, commande[i].fraisPort, adresse[i].rue, adresse[i].ville, adresse[i].codePostal, adresse[i].pays);
     }
     /* Question : ajout de commande ou non ? */
     do {
@@ -23,8 +22,8 @@ Commande creerCommande(Commande *commande, LigneCommande *ligneCommande, Client 
     }while(r != 'O' && r != 'N');
     if (r == 'O') {
         /* Incrémentation des variables */
-        nb_lig_commandes++;
-        numCommande++;
+        *nb_lig_commandes++;
+        numCommande = *nb_lig_commandes;
         /* Affichage des clients */
         printf("Clients actuels :\n");
         for (i=0 ; i < *nb_lig_clients; i++) {
@@ -55,12 +54,13 @@ Commande creerCommande(Commande *commande, LigneCommande *ligneCommande, Client 
             do {
                 printf("Entrez le numéro du produit commandé et la quantité, séparés par une virgule :\n");
                 scanf(" %d, %d", &choixProduit, &qteProduit);
-                *ligneCommande[numCommande + j].refProduit = *produits[choixProduit].reference;
-                *ligneCommande[numCommande + j].designation = *produits[choixProduit].designation;
-                ligneCommande[numCommande + j].quantite = qteProduit;
-                ligneCommande[numCommande + j].prixUnitaireHT = produits[choixProduit].prixUnitaireHT;
-                ligneCommande[numCommande + j].sousTotalHT = qteProduit * ligneCommande[numCommande + j].prixUnitaireHT;
-                commande[numCommande].montantBrut += ligneCommande[numCommande].sousTotalHT;
+                nb_lig_commandes ++;
+                *ligneCommande[j].refProduit = *produits[choixProduit].reference;
+                *ligneCommande[j].designation = *produits[choixProduit].designation;
+                ligneCommande[j].quantite = qteProduit;
+                ligneCommande[j].prixUnitaireHT = produits[choixProduit].prixUnitaireHT;
+                ligneCommande[j].sousTotalHT = qteProduit * ligneCommande[j].prixUnitaireHT;
+                commande[j].montantBrut += ligneCommande[j].sousTotalHT;
             }while((choixProduit < 0 || choixProduit >= *nb_lig_produit) && produits[choixProduit].quantiteStock <= 0);
         }
         /* Saisie du taux de réduction */
@@ -91,17 +91,17 @@ Commande creerCommande(Commande *commande, LigneCommande *ligneCommande, Client 
 Commande modifierSupprimerCommande(Commande *commande, LigneCommande *ligneCommande, Client *client, Date *date, Adresse *adresse, Produit *produits, int *nb_lig_commandes, int *nb_lig_produit) {
     /* Variables locales */
     int i;
-    int choixCommande, choixAction, choixProduit, qteProduit;
+    int choixAction, choixCommande, choixProduit, qteProduit;
     /* Affichage des commandes */
     printf("Commandes actuelles :\n");
     for (i=0 ; i < *nb_lig_commandes; i++) {
-        printf("%d. %d, %d, %d/%d/%d, %s, %s, %s, %d, %.2f, %.2f, %s, %s, %s, %s\n", i + 1, commande[i].numero, client[i].idClient, date[i].jour, date[i].mois, date[i].annee, commande[i].statut, ligneCommande[i].refProduit, ligneCommande[i].designation, ligneCommande[i].quantite, commande[i].montantTTC, commande[i].fraisPort, adresse[i].rue, adresse[i].ville, adresse[i].codePostal, adresse[i].pays);
+        printf("%d. %d, %d, %d/%d/%d, %s, %.2f, %.2f, %s, %s, %s, %s\n", i + 1, commande[i].numero, client[i].idClient, date[i].jour, date[i].mois, date[i].annee, commande[i].statut, commande[i].montantTTC, commande[i].fraisPort, adresse[i].rue, adresse[i].ville, adresse[i].codePostal, adresse[i].pays);
     }
     /* Saisie du numéro de la commande à modifier ou supprimer */
     do {
         printf("Entrez le numero de la commande que vous souhaitez modifier ou supprimer :\n");
         scanf(" %d", &choixCommande);
-    }while(choixCommande < 0 || choixCommande >= *nb_lig_commandes);
+    }while(choixCommande < 1 || choixCommande >= *nb_lig_commandes);
     /* Choix de l'action */
     do {
         printf("Choisir une action :\n1. Ajouter une ligne de commande\n2. Supprimer une ligne de commande\n0. Revenir au menu commandes");
@@ -112,46 +112,137 @@ Commande modifierSupprimerCommande(Commande *commande, LigneCommande *ligneComma
                 for (i=0 ; i < *nb_lig_produit; i++) {
                     printf("%d. %s, %s, %s, %f, %d, %d, %d\n", i, produits[i].reference, produits[i].designation, produits[i].categorie, produits[i].prixUnitaireHT, produits[i].quantiteStock, produits[i].seuilAlerte, produits[i].actif);
                 }
+                /* Incrémentation */
+                nb_lig_commandes ++;
                 /* Saisie du / des produit(s) commandé(s) */
                 do {
                     printf("Entrez le numéro du produit commandé et la quantité, séparés par une virgule :\n");
                     scanf(" %d, %d", &choixProduit, &qteProduit);
-                    *ligneCommande[choixCommande].refProduit = *produits[choixProduit].reference;
-                    *ligneCommande[choixCommande].designation = *produits[choixProduit].designation;
-                    ligneCommande[choixCommande].quantite = qteProduit;
-                    ligneCommande[choixCommande].prixUnitaireHT = produits[choixProduit].prixUnitaireHT;
-                    ligneCommande[choixCommande].sousTotalHT = qteProduit * ligneCommande[choixCommande].prixUnitaireHT;
-                    commande[choixCommande].montantBrut += ligneCommande[choixCommande].sousTotalHT;
+                    *ligneCommande[commande[choixCommande].numero].refProduit = *produits[choixProduit].reference;
+                    *ligneCommande[commande[choixCommande].numero].designation = *produits[choixProduit].designation;
+                    ligneCommande[commande[choixCommande].numero].quantite = qteProduit;
+                    ligneCommande[commande[choixCommande].numero].prixUnitaireHT = produits[choixProduit].prixUnitaireHT;
+                    ligneCommande[commande[choixCommande].numero].sousTotalHT = qteProduit * ligneCommande[commande[choixCommande].numero].prixUnitaireHT;
+                    commande[commande[choixCommande].numero].montantBrut += ligneCommande[commande[choixCommande].numero].sousTotalHT;
                 }while((choixProduit < 0 || choixProduit >= *nb_lig_produit) && produits[choixProduit].quantiteStock <= 0);
                 /* Calculs du prix final */
-                commande[choixCommande].montantRemise = commande[choixCommande].tauxRemise * commande[choixCommande].montantBrut;
-                commande[choixCommande].montantHT = commande[choixCommande].montantBrut - commande[choixCommande].montantRemise;
-                commande[choixCommande].montantTVA = 0.2 * commande[choixCommande].montantHT;
-                commande[choixCommande].montantTTC = commande[choixCommande].montantHT + commande[choixCommande].montantTVA + commande[choixCommande].fraisPort;
+                commande[commande[choixCommande].numero].montantRemise = commande[commande[choixCommande].numero].tauxRemise * commande[commande[choixCommande].numero].montantBrut;
+                commande[commande[choixCommande].numero].montantHT = commande[commande[choixCommande].numero].montantBrut - commande[commande[choixCommande].numero].montantRemise;
+                commande[commande[choixCommande].numero].montantTVA = 0.2 * commande[commande[choixCommande].numero].montantHT;
+                commande[commande[choixCommande].numero].montantTTC = commande[commande[choixCommande].numero].montantHT + commande[commande[choixCommande].numero].montantTVA + commande[commande[choixCommande].numero].fraisPort;
                 printf("Commandes mises à jour :\n");
-                nb_lig_commandes ++;
+                /* Affichage des commandes après modification */
                 for (i=0; i < *nb_lig_commandes; i++) {
                     printf("%d. %d, %d, %d/%d/%d, %s, %s, %s, %d, %.2f, %.2f, %s, %s, %s, %s\n", i + 1, commande[i].numero, client[i].idClient, date[i].jour, date[i].mois, date[i].annee, commande[i].statut, ligneCommande[i].refProduit, ligneCommande[i].designation, ligneCommande[i].quantite, commande[i].montantTTC, commande[i].fraisPort, adresse[i].rue, adresse[i].ville, adresse[i].codePostal, adresse[i].pays);
                 }
                 break;
             }
             case 2: {
-                free(&ligneCommande[choixCommande]);
+                i=0;
+                printf("Produits :\n");
+                while(&ligneCommande[i] != NULL) {
+                    printf("%d. %s, %s, %d, %.2f", i + 1, ligneCommande[i].refProduit, ligneCommande[i].designation, ligneCommande[i].quantite, ligneCommande[i].sousTotalHT);
+                    i++;
+                }
+                do {
+                    printf("Choisissez la ligne à supprimer :\n");
+                    scanf("%d", &choixProduit);
+                } while(choixProduit < 1 || choixProduit > i);
+                /* Supression d'une ligne de commande */
+                free(&ligneCommande[choixProduit]);
                 break;
             }
             case 0: {
                 break;
             }
             default: {
+                /* Sortie par défaut en cas de choix invalide */
                 printf("  [!] Choix invalide.\n");
                 break;
             }
         }
-    }while(choixAction != 0 && commande[choixCommande].statut == "EN COURS");
+        /* Permet de réafficher le menu taut que l'utilisateur n'a pas décider de quitter */
+    }while(choixAction != 0 && commande[choixCommande].statut != "EN COURS");
+    return *commande;
 }
 
-// Commande afficherUneCommande(Commande *commande, LigneCommande *ligneCommande, Client *client, Date *date, Adresse *adresse, Produit *produits, int *nb_lig_commandes, int *nb_lig_clients, int *nb_lig_produit) {
-//
-// }
+Commande changerStatut(Commande *commande, Client *client, Date *date, Adresse *adresse, int *nb_lig_commandes) {
+    int i, choixCommande, choixStatut;
+    /* Affichage des commandes */
+    printf("Commandes actuelles :\n");
+    for (i=0 ; i < *nb_lig_commandes; i++) {
+        printf("%d. %d, %d, %d/%d/%d, %s, %.2f, %.2f, %s, %s, %s, %s\n", i + 1, commande[i].numero, client[i].idClient, date[i].jour, date[i].mois, date[i].annee, commande[i].statut, commande[i].montantTTC, commande[i].fraisPort, adresse[i].rue, adresse[i].ville, adresse[i].codePostal, adresse[i].pays);
+    }
+    do {
+        printf("Saisissez la commande dont vous souhaitez changer le statut :\n");
+        scanf("%d", &choixCommande);
+    } while (choixCommande < 1 || choixCommande > *nb_lig_commandes);
+    do {
+        printf("Choisissez le nouveau statut de la commande :\n1. EN COURS\n2. EXPEDIEE\n3. LIVREE\n");
+        scanf(" %d", &choixStatut);
+    } while(choixStatut < 1 || choixStatut > 3);
+    switch (choixStatut) {
+        case 1: {
+            *commande[choixCommande].statut = "EN COURS";
+            break;
+        }
+        case 2: {
+            *commande[choixCommande].statut = "EXPEDIEE";
+            break;
+        }
+        case 3: {
+            *commande[choixCommande].statut = "LIVREE";
+            break;
+        }
+    }
+    return commande[choixCommande];
+}
 
+Commande annulerCommande(Commande *commande, Client *client, Date *date, Adresse *adresse, int *nb_lig_commandes) {
+    int i, choixCommande;
+    /* Affichage des commandes */
+    printf("Commandes actuelles :\n");
+    for (i=0 ; i < *nb_lig_commandes; i++) {
+        printf("%d. %d, %d, %d/%d/%d, %s, %.2f, %.2f, %s, %s, %s, %s\n", i + 1, commande[i].numero, client[i].idClient, date[i].jour, date[i].mois, date[i].annee, commande[i].statut, commande[i].montantTTC, commande[i].fraisPort, adresse[i].rue, adresse[i].ville, adresse[i].codePostal, adresse[i].pays);
+    }
+    do {
+        printf("Saisissez une commande à annuler :\n");
+        scanf("%d", &choixCommande);
+    } while (choixCommande < 1 || choixCommande > *nb_lig_commandes);
+    commande[choixCommande].statut = "ANNULEE";
+    return commande[choixCommande];
+}
 
+void afficherUneCommande(Commande *commande, LigneCommande *ligneCommande, Client *client, Date *date, Adresse *adresse, int *nb_lig_commandes) {
+    int i, j = 0, choixCommande;
+    printf("Commandes actuelles :\n");
+    for (i=0 ; i < *nb_lig_commandes; i++) {
+        printf("%d. %d, %d/%d/%d, %s, %.2f, %.2f, %s, %s, %s, %s\n", commande[i].numero, client[i].idClient, date[i].jour, date[i].mois, date[i].annee, commande[i].statut, commande[i].montantTTC, commande[i].fraisPort, adresse[i].rue, adresse[i].ville, adresse[i].codePostal, adresse[i].pays);
+    }
+    do {
+        printf("Saisissez le numéro de la commande que vous souhaitez afficher :\n");
+        scanf("%d", &choixCommande);
+    }while (choixCommande < 1 || choixCommande > 2);
+    i = 0;
+    while(i < choixCommande) {
+        i++;
+    }
+    printf("Commande n°%d:\n", choixCommande);
+    printf("Identifiant du client : %d\n", client[choixCommande].idClient);
+    printf("Date de commande : %d/%d/%d\n", date[i].jour, date[choixCommande].mois, date[choixCommande].annee);
+    printf("Adressee de livraison : %s, %s, %s, %s\n", adresse[choixCommande].rue, adresse[choixCommande].ville, adresse[choixCommande].codePostal, adresse[choixCommande].pays);
+    printf("Montant HT : %.2f\n", commande[choixCommande].montantHT);
+    printf("Remise appliquée : %.2f\n", commande[choixCommande].montantRemise);
+    printf("montant TVA sur la commande : %.2f\n", commande[choixCommande].montantTVA);
+    printf("Frais de port : %.2f\n", commande[choixCommande].fraisPort);
+    printf("Montant TTC : %.2f\n", commande[choixCommande].montantTTC);
+    printf("Statut de la commande : %s\n", commande[choixCommande].statut);
+    while (&ligneCommande[j] != NULL) {
+        printf("Produit %d:\n", j+1);
+        printf("Référence du produit : %s\n", ligneCommande[j].refProduit);
+        printf("Designation du produit : %s\n", ligneCommande[j].designation);
+        printf("Quantité : %d\n", ligneCommande[j].quantite);
+        printf("Prix unitaire HT : %.2f\n", ligneCommande[j].prixUnitaireHT);
+        printf("Sous-total HT : %.2f\n", ligneCommande[j].sousTotalHT);
+    }
+}

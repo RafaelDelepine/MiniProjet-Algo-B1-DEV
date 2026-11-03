@@ -18,29 +18,6 @@ static int lireChoix(void)
     return choix;
 }
 
-/* --- Module PRODUITS ------------------------------------------------------ */
-// void ajouterProduit(void)      { printf("  [STUB] ajouterProduit - a implementer dans produit.c\n"); }
-// void modifierProduit(void)     { printf("  [STUB] modifierProduit - a implementer dans produit.c\n"); }
-// void supprimerProduit(void)    { printf("  [STUB] supprimerProduit - a implementer dans produit.c\n"); }
-//void afficherCatalogue(void)   { printf("  [STUB] afficherCatalogue - a implementer dans produit.c\n"); }
-
-/* --- Module CLIENTS ------------------------------------------------------- */
-//void ajouterClient(void)       { printf("  [STUB] ajouterClient - a implementer dans client.c\n"); }
-//void modifierClient(void)      { printf("  [STUB] modifierClient - a implementer dans client.c\n"); }
-//void supprimerClient(void)     { printf("  [STUB] supprimerClient - a implementer dans client.c\n"); }
-//void afficherListeClients(void){ printf("  [STUB] afficherListeClients - a implementer dans client.c\n"); }
-
-/* --- Module COMMANDES ----------------------------------------------------- */
-// void creerCommande(void)       { printf("  [STUB] creerCommande - a implementer dans commande.c\n"); }
-// void afficherUneCommande(void) { printf("  [STUB] afficherUneCommande - a implementer dans commande.c\n"); }
-
-/* --- Module STATISTIQUES -------------------------------------------------- */
-void afficherChiffreAffaires(void) { printf("  [STUB] afficherChiffreAffaires - a implementer dans statistique.c\n"); }
-
-/* ==========================================================================
- * SOUS-MENUS : un seul motif a retenir, applique 4 fois.
- * Pour ajouter une fonctionnalite : un printf + un case + la borne max.
- * ========================================================================== */
 /* A mettre dans initialisation.c : */
 int nb_lig_commandes = 6, nb_lig_lcommandes = 6, nb_lig_dates = 6, nb_lig_adresses = 5, nb_lig_clients = 5, nb_lig_produit = 8;
 
@@ -67,7 +44,6 @@ static void menuProduits(void)
         printf("  2. Modifier un produit\n");
         printf("  3. Supprimer un produit\n");
         printf("  4. Afficher le catalogue\n");
-        printf("  5. Rechercher un produit\n");
         printf("  0. Retour au menu principal\n");
         choix = lireChoix();
 
@@ -85,8 +61,7 @@ static void menuProduits(void)
                 supprimerProduit(*produit);
                 break;
             }
-            case 4: afficherCatalogue(*produits); break;
-            case 5: rechercherProduit(*produits); break;
+            case 4: afficherCatalogue(); break;
             case 0:                      break; /* retour automatique */
             default: printf("  [!] Choix invalide.\n"); break;
         }

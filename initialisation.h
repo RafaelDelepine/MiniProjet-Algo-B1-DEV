@@ -6,8 +6,8 @@
 
 
 
-void initialiserDonneesTest(struct Boutique *b);
+void initialiserDonneesTest(Boutique *boutique);
 
-void detruireBoutique(struct Boutique *b);
+void detruireBoutique(Boutique *boutique);
 
 #endif //MINI_PROJET_INITIALISATION_H

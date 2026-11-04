@@ -208,7 +208,7 @@ Commande annulerCommande(Commande *commande, Client *client, Date *date, Adresse
         printf("Saisissez une commande à annuler :\n");
         scanf("%d", &choixCommande);
     } while (choixCommande < 1 || choixCommande > *nb_lig_commandes);
-    commande[choixCommande].statut = "ANNULEE";
+    strcpy(commande[choixCommande].statut, "ANNULEE");
     return commande[choixCommande];
 }
 
@@ -236,7 +236,7 @@ void afficherUneCommande(Commande *commande, LigneCommande *ligneCommande, Clien
     printf("Frais de port : %.2f\n", commande[choixCommande].fraisPort);
     printf("Montant TTC : %.2f\n", commande[choixCommande].montantTTC);
     printf("Statut de la commande : %s\n", commande[choixCommande].statut);
-    while (&ligneCommande[j] != NULL) {
+    for (j = 0; j < commande[choixCommande].lignes; j++) {
         printf("Produit %d:\n", j+1);
         printf("Référence du produit : %s\n", ligneCommande[j].refProduit);
         printf("Designation du produit : %s\n", ligneCommande[j].designation);

@@ -177,6 +177,7 @@ Commande changerStatut(Commande *commande, Client *client, Date *date, Adresse *
         printf("Saisissez la commande dont vous souhaitez changer le statut :\n");
         scanf("%d", &choixCommande);
     } while (choixCommande < 1 && choixCommande > *nb_lig_commandes);
+    choixCommande --;
     do {
         printf("Choisissez le nouveau statut de la commande :\n1. EN COURS\n2. EXPEDIEE\n3. LIVREE\n");
         scanf(" %d", &choixStatut);
@@ -209,6 +210,7 @@ Commande annulerCommande(Commande *commande, Client *client, Date *date, Adresse
         printf("Saisissez une commande à annuler :\n");
         scanf("%d", &choixCommande);
     } while (choixCommande < 1 && choixCommande > *nb_lig_commandes);
+choixCommande --;
     strcpy(commande[choixCommande].statut, "ANNULEE");
     return commande[choixCommande];
 }
@@ -228,8 +230,9 @@ void afficherUneCommande(Commande *commande, LigneCommande *ligneCommande, Clien
         i++;
     }
     printf("Commande n°%d:\n", choixCommande);
+    choixCommande --;
     printf("Identifiant du client : %d\n", client[choixCommande].idClient);
-    printf("Date de commande : %d/%d/%d\n", date[i].jour, date[choixCommande].mois, date[choixCommande].annee);
+    printf("Date de commande : %d/%d/%d\n", date[choixCommande].jour, date[choixCommande].mois, date[choixCommande].annee);
     printf("Adressee de livraison : %s, %s, %s, %s\n", adresse[choixCommande].rue, adresse[choixCommande].ville, adresse[choixCommande].codePostal, adresse[choixCommande].pays);
     printf("Montant HT : %.2f\n", commande[choixCommande].montantHT);
     printf("Remise appliquée : %.2f\n", commande[choixCommande].montantRemise);

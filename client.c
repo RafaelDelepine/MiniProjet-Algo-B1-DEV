@@ -4,14 +4,13 @@
 #include "types.h"
 #include "client.h"
 
-
-int mail_differend;
-
 Client ajouterClient(Client *client,  Adresse *adresse, Commande *commande) {
     client= (Client*) malloc(2*sizeof(Client));
     adresse = (Adresse*) malloc(2*sizeof(Adresse));
     commande = (Commande*) malloc(2*sizeof(Commande));
     int i = 0;
+    int j;
+    int comp;
 
     /*id client*/
     do {
@@ -37,8 +36,8 @@ Client ajouterClient(Client *client,  Adresse *adresse, Commande *commande) {
         printf("Saisir l'adresse mail du client :\n");
         scanf(" %f", &client[i].email);
     }while(client[i].email <= 0);
-    for (j=0 ; j<6 ; j++) {
-        comp = strcmp(client[i].idClient, client[i].email); // A modifier !
+    for (j=0 ; j<5 ; j++) {
+        comp = strcmp(client[j].email, client[i].email); // A modifier !
         if (comp == 0) {
             printf("ERREUR : addresse mail déjà existante\nAnnulation de la création du client");
         return *client;
@@ -125,7 +124,7 @@ Client modifierClient(Client * clients, Adresse * adresse) {
     /* Affichage du tableau */
     printf("Client actuel :\n");
     for (i=0 ; i<nb_lig_clients ; i++) {
-        printf("%s, %s, %s, %f, %d, %d, %d\n", client[i].idClient,client[i].nom,client[i].prenom,client[i].email,client[i].telephone, adresse[i].rue, adresse[i].ville, adresse[i].codePostal, adresse[i].pays, client[i].pointsFidelite, client[i].nbCommande, client[i].capaciteCommandes, client[i].actif);
+        printf("%s, %s, %s, %f, %d, %d, %d\n", clients[i].idClient,clients[i].nom,clients[i].prenom,clients[i].email,clients[i].telephone, adresse[i].rue, adresse[i].ville, adresse[i].codePostal, adresse[i].pays, clients[i].pointsFidelite, clients[i].nbCommandes, clients[i].capaciteCommandes, clients[i].actif);
     }
 
     /* Sélection du client */
@@ -139,21 +138,21 @@ Client modifierClient(Client * clients, Adresse * adresse) {
     /* Nouveaux prénom */
    do {
         printf("Saisir le nouveau prénom du client :\n");
-        scanf("%s", &client[i].prenom);
-    }while(client[i].prenom == '\0');
+        scanf("%s", &clients[i].prenom);
+    }while(clients[i].prenom == '\0');
     /*nouveaux nom*/
     do {
         printf("Saisir le nouveau nom du Client :\n");
-        scanf(" %s", &client[i].nom);
-    }while(client[i].nom =='\0');
+        scanf(" %s", &clients[i].nom);
+    }while(clients[i].nom =='\0');
     do {
         printf("Saisir la nouvelle adresse mail du client :\n");
-        scanf(" %f", &client[i].email);
-    }while(client[i].email <= 0);  //ATTENTION faut rajouter que l'adresse mail doit être unique
+        scanf(" %f", &clients[i].email);
+    }while(clients[i].email <= 0);  //ATTENTION faut rajouter que l'adresse mail doit être unique
     do {
         printf("Saisir le nouveau numéro de téléphone du client :\n");
-        scanf(" %d", &client[i].telephone);
-    }while(client[i].telephone < 0)
+        scanf(" %d", &clients[i].telephone);
+    }while(clients[i].telephone < 0);
 
     /* modification de l'adresse */
    do {
@@ -187,24 +186,24 @@ Client modifierClient(Client * clients, Adresse * adresse) {
 
     /* Réaffichage du tableau mis à jour */
     printf("\nListe des clients mise à jour :\n");
-    for (i=0 ; i<nb_lig_client ; i++) {
-        printf("%s, %s, %s, %f, %d, %d, %d\n", client[i].idClient,client[i].nom,client[i].prenom,client[i].email,client[i].telephone, adresse[i].rue, adresse[i].ville, adresse[i].codePostal, adresse[i].pays, client[i].pointsFidelite, client[i].nbCommande, client[i].capaciteCommandes, client[i].actif);
+    for (i=0 ; i<nb_lig_clients ; i++) {
+        printf("%s, %s, %s, %f, %d, %d, %d\n", clients[i].idClient,clients[i].nom,clients[i].prenom,clients[i].email,clients[i].telephone, adresse[i].rue, adresse[i].ville, adresse[i].codePostal, adresse[i].pays, clients[i].pointsFidelite, clients[i].nbCommandes, clients[i].capaciteCommandes, clients[i].actif);
     }
     return *clients;
 }
 
 /* Fonction supprimerClient */
-Client supprimerClient(Client *clients, Adresse * adresse) {
+Client supprimerClient(Client *clients, Adresse * adresse, Commande * commandes) {
     /* Variables locales */
-    int nb_lig_client = 5;
+    int nb_lig_clients = 5;
     int i,j,comp;
     int nb_client;
     char choix;
 
     /* Affichage du tableau */
     printf("Clients actuels :\n");
-    for (i=0 ; i<nb_lig ; i++) {
-        printf("%s, %s, %s, %f, %d, %d, %d\n", client[i].idClient,client[i].nom,client[i].prenom,client[i].email,client[i].telephone, adresse[i].rue, adresse[i].ville, adresse[i].codePostal, adresse[i].pays, client[i].pointsFidelite, client[i].nbCommande, client[i].capaciteCommandes, client[i].actif);
+    for (i=0 ; i<nb_lig_clients ; i++) {
+        printf("%s, %s, %s, %f, %d, %d, %d\n", clients[i].idClient,clients[i].nom,clients[i].prenom,clients[i].email,clients[i].telephone, adresse[i].rue, adresse[i].ville, adresse[i].codePostal, adresse[i].pays, clients[i].pointsFidelite, clients[i].nbCommandes, clients[i].capaciteCommandes, clients[i].actif);
     }
 
     /* Sélection du client à supprimer */
@@ -216,7 +215,7 @@ Client supprimerClient(Client *clients, Adresse * adresse) {
 
     /* Annulation de la supression du client car présent dans une commande en cours */
     for (j=0 ; j<3 ; j++) {
-        comp = strcmp(client[i].idClient, commande[i].idClient);
+        comp = strcmp(clients[i].idClient, commandes[i].idClient);
         if (comp == 0) {
             //manque déclaration lié les commandes au client
             printf("ERREUR : Client présent dans l'une des commandes\nAnnulation de la suppression du client");
@@ -229,23 +228,23 @@ Client supprimerClient(Client *clients, Adresse * adresse) {
     scanf("%c",&choix);
     if (choix == 'N') {
         printf("Annulation de la suppression du Client");
-        return *client;
+        return *clients;
     }
     else {
-        free(&client[i]);
-        client = NULL;
-        return *client;
+        free(&clients[i]);
+        clients = NULL;
+        return *clients;
     }
 
 /* Fonction afficherListeClient */
 Client afficherListeClient(Client *client,Adresse *adresse){
     /* Variables locales */
-    int nb_lig_client = 5;
+    int nb_lig_clients = 5;
     int i;
 
     /* Affichage du tableau */
     printf("Client actuels :\n");
-    for (i=0 ; i<nb_lig ; i++) {
+    for (i=0 ; i<nb_lig_clients ; i++) {
         printf("%s, %s, %s, %f, %d, %d, %d\n", client[i].idClient,client[i].nom,client[i].prenom,client[i].email,client[i].telephone, adresse[i].rue, adresse[i].ville, adresse[i].codePostal, adresse[i].pays, client[i].pointsFidelite, client[i].nbCommande, client[i].capaciteCommandes, client[i].actif);
     }
     return *client;

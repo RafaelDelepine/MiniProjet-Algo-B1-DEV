@@ -8,7 +8,7 @@
 
 Commande creerCommande(Commande *commande, LigneCommande *ligneCommande, Client *client, Date *date, Adresse *adresse, Produit *produits, int *nb_lig_commandes, int *nb_lig_clients, int *nb_lig_produit) {
     /* Variables locales */
-    int i, nbCommade, numCommande, choixClient, choixProduit, qteProduit;
+    int i, nbCommade, numCommande, choixClient, choixProduit, qteProduit, pointsfidelite;
     char r;
     /* Affichage des commandes */
     printf("Commandes actuelles :\n");
@@ -79,10 +79,16 @@ Commande creerCommande(Commande *commande, LigneCommande *ligneCommande, Client 
         commande[numCommande].montantTVA = 0.2 * commande[numCommande].montantHT;
         commande[numCommande].montantTTC = commande[numCommande].montantHT + commande[numCommande].montantTVA + commande[numCommande].fraisPort;
         strcpy(commande[numCommande].statut, "EN COURS");
+
+        /* Calcul gain points de fidelite */
+        pointsfidelite = commande[numcommande].montantTTC/10;
+        printf("Le client gagne %d points de fidélité",pointsfidelite);
+        client[choixclient].pointsfidelite += pointsfidelite;
+        
         /* Affichage du tableau mis à jour */
         printf("Commandes mises à jour :\n");
         for (i=0; i < numCommande; i++) {
-            printf("%d. %d, %d, %d/%d/%d, %s, %s, %s, %d, %.2f, %.2f, %s, %s, %s, %s\n", i + 1, commande[i].numero, client[i].idClient, date[i].jour, date[i].mois, date[i].annee, commande[i].statut, ligneCommande[i].refProduit, ligneCommande[i].designation, ligneCommande[i].quantite, commande[i].montantTTC, commande[i].fraisPort, adresse[i].rue, adresse[i].ville, adresse[i].codePostal, adresse[i].pays);
+            printf("%d. %d, %d, %d/%d/%d, %s, %s, %s, %d, %.2f, %.2f, %d, %s, %s, %s, %s\n", i + 1, commande[i].numero, client[i].idClient, date[i].jour, date[i].mois, date[i].annee, commande[i].statut, ligneCommande[i].refProduit, ligneCommande[i].designation, ligneCommande[i].quantite, commande[i].montantTTC, commande[i].fraisPort, client[choixclient].pointsfidelite, adresse[i].rue, adresse[i].ville, adresse[i].codePostal, adresse[i].pays);
         }
     }
     return *commande;

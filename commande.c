@@ -137,10 +137,9 @@ Commande modifierSupprimerCommande(Commande *commande, LigneCommande *ligneComma
                 }
                 break;
             }
-            case 2: {
-                i=0;
+            case 2: {
                 printf("Produits :\n");
-                while(&ligneCommande[i] != NULL) {
+                for(i=0; i<commande[choixCommande].lignes; i++) {
                     printf("%d. %s, %s, %d, %.2f", i + 1, ligneCommande[i].refProduit, ligneCommande[i].designation, ligneCommande[i].quantite, ligneCommande[i].sousTotalHT);
                     i++;
                 }

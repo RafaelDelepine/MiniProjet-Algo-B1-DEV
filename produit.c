@@ -8,11 +8,11 @@
 Produit ajouterProduit(Produit *produits) {
     /* Variables locales */
     int nbProduit = 0;
-    int i = nbProduit,nb_lig = 8;
+    int i = nbProduit,*nb_lig_produit;
 
     /* Affichage du tableau */
     printf("Produits actuels :\n");
-    for (i=0 ; i<nb_lig ; i++) {
+    for (i=0 ; i<*nb_lig_produit ; i++) {
         printf("%s, %s, %s, %f, %d, %d, %d\n", produits[i].reference, produits[i].designation, produits[i].categorie, produits[i].prixUnitaireHT, produits[i].quantiteStock, produits[i].seuilAlerte, produits[i].actif);
     }
 
@@ -55,7 +55,7 @@ Produit ajouterProduit(Produit *produits) {
 
     /* Réaffichage du tableau mis à jour */
     printf("\nListe des produits mise à jour :\n");
-    for (i=0 ; i<nb_lig ; i++) {
+    for (i=0 ; i<*nb_lig_produit ; i++) {
         printf("%s, %s, %s, %f, %d, %d, %d", produits[i].reference, produits[i].designation, produits[i].categorie, produits[i].prixUnitaireHT, produits[i].quantiteStock, produits[i].seuilAlerte, produits[i].actif);
     }
     return *produits;
@@ -65,13 +65,13 @@ Produit ajouterProduit(Produit *produits) {
 /* Fonction modifierProduit */
 Produit modifierProduit(Produit * produits) {
     /* Variables locales */
-    int nb_lig = 8;
+    int *nb_lig_produit;
     int i;
     int nb_produit;
 
     /* Affichage du tableau */
     printf("Produits actuels :\n");
-    for (i=0 ; i<nb_lig ; i++) {
+    for (i=0 ; i<*nb_lig_produit; i++) {
         printf("%s, %s, %s, %f, %d, %d, %d\n", produits[i].reference, produits[i].designation, produits[i].categorie, produits[i].prixUnitaireHT, produits[i].quantiteStock, produits[i].seuilAlerte, produits[i].actif);
     }
 
@@ -101,7 +101,7 @@ Produit modifierProduit(Produit * produits) {
 
     /* Réaffichage du tableau mis à jour */
     printf("\nListe des produits mise à jour :\n");
-    for (i=0 ; i<nb_lig ; i++) {
+    for (i=0 ; i<*nb_lig_produit ; i++) {
         printf("%s, %s, %s, %f, %d, %d, %d", produits[i].reference, produits[i].designation, produits[i].categorie, produits[i].prixUnitaireHT, produits[i].quantiteStock, produits[i].seuilAlerte, produits[i].actif);
     }
     return *produits;
@@ -111,14 +111,14 @@ Produit modifierProduit(Produit * produits) {
 /* Fonction supprimerProduit */
 Produit supprimerProduit(Produit *produits, LigneCommande *lignecommande) {
     /* Variables locales */
-    int nb_lig = 8;
+    int *nb_lig_produit;
     int i,j,comp;
     int nb_produit;
     char choix;
 
     /* Affichage du tableau */
     printf("Produits actuels :\n");
-    for (i=0 ; i<nb_lig ; i++) {
+    for (i=0 ; i<*nb_lig_produit ; i++) {
         printf("%s, %s, %s, %f, %d, %d, %d", produits[i].reference, produits[i].designation, produits[i].categorie, produits[i].prixUnitaireHT, produits[i].quantiteStock, produits[i].seuilAlerte, produits[i].actif);
     }
 
@@ -156,12 +156,12 @@ Produit supprimerProduit(Produit *produits, LigneCommande *lignecommande) {
 /* Fonction afficherCatalogue */
 Produit afficherCatalogue(Produit *produits){
     /* Variables locales */
-    int nb_lig = 8;
+    int *nb_lig_produit;
     int i;
 
     /* Affichage du tableau */
     printf("Produits actuels :\n");
-    for (i=0 ; i<nb_lig ; i++) {
+    for (i=0 ; i<*nb_lig_produit ; i++) {
         printf("%s, %s, %s, %f, %d, %d, %d", produits[i].reference, produits[i].designation, produits[i].categorie, produits[i].prixUnitaireHT, produits[i].quantiteStock, produits[i].seuilAlerte, produits[i].actif);
     }
     return *produits;
@@ -172,12 +172,12 @@ Produit afficherCatalogue(Produit *produits){
 Produit rechercherProduit(Produit *produits){
     /* Variables locales */
     char reference_produit[12];
-    int i, nb_lig = 8, comp;
+    int i, *nb_lig_produit, comp;
 
     /* Recherche du produit grâce à la référence */
     printf("Entrez la référence du produit: ");
     scanf("%s",reference_produit);
-    for (i=0 ; i<nb_lig ; i++) {
+    for (i=0 ; i<*nb_lig_produit ; i++) {
         comp = strcmp(reference_produit,produits[i].reference);
         if (comp == 0) {
             printf("\nProduit trouvé : %s, %s", produits[i].reference, produits[i].designation);

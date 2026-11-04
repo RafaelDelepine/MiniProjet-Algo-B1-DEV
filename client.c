@@ -40,7 +40,7 @@ Client ajouterClient(Client *client,  Adresse *adresse, Commande *commande) {
     for (j=0 ; j<6 ; j++) {
         comp = strcmp(client[i].idClient, client[i].email); // A modifier !
         if (comp == 0) {
-            printf("ERREUR : addresse mail déjà existante\nAnnulation de la suppression du client");
+            printf("ERREUR : addresse mail déjà existante\nAnnulation de la création du client");
         return *client;
         }
     }

@@ -105,9 +105,13 @@ Client ajouterClient(Client *clients,  Adresse *adresse, Commande *commande) {
 
     int nb_lig_clients = 0;
     /*historique commande*/
-    for (i=0 ; i<nb_lig_clients ; i++) {
-        printf("%s",clients[i].commandes);
-        fgets(*commande,sizeof(commande[i]) , stdin);
+    
+    if(strcmp(commande[i].idClient, client[<ta variable de choix>].idClient) == 1){
+        for (i=0 ; i<nb_lig_clients ; i++) {
+           printf("%s",clients[i].commandes);
+           fgets(*commande,sizeof(commande[i]) , stdin);
+           printf("Voici l'historique des commande du clients")
+    }
     };
 
 

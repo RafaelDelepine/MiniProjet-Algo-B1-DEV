@@ -74,11 +74,11 @@ Commande creerCommande(Commande *commande, LigneCommande *ligneCommande, Client 
             scanf(" %f", &commande[numCommande].fraisPort);
         }while(commande[numCommande].fraisPort < 0 && commande[numCommande].fraisPort > 5.90);
         /* Calcul du montant toutes taxes comprises et aujout du statut*/
-        commande[numCommande].montantRemise = commande[numCommande].tauxRemise * commande[numCommande].montantBrutHT;
+        commande[numCommande].montantRemise = (commande[numCommande].tauxRemise * commande[numCommande].montantBrutHT) / 100;
         commande[numCommande].montantHT = commande[numCommande].montantBrutHT - commande[numCommande].montantRemise;
         commande[numCommande].montantTVA = 0.2 * commande[numCommande].montantHT;
         commande[numCommande].montantTTC = commande[numCommande].montantHT + commande[numCommande].montantTVA + commande[numCommande].fraisPort;
-        *commande[numCommande].statut = "EN COURS";
+        strcpy(commande[numCommande].statut, "EN COURS");
         /* Affichage du tableau mis à jour */
         printf("Commandes mises à jour :\n");
         for (i=0; i < numCommande; i++) {

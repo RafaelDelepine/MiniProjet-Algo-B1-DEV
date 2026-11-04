@@ -60,7 +60,7 @@ void initialiserDonnees(Boutique *boutique, Client *clients) {
 
 
 }
-void detruireBoutique(Boutique *b) {
+void detruireBoutique(Boutique *boutique) {
     for (int i = 0; i < b->nbClients; i++) {
         for (int j = 0; j < b->clients[i].nbCommandes; j++)
             free(b->clients[i].commandes[j].lignes);

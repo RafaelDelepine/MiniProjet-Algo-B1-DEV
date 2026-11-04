@@ -4,8 +4,8 @@
 #include "types.h"
 #include "client.h"
 
-Client ajouterClient(Client *client,  Adresse *adresse, Commande *commande) {
-    client= (Client*) malloc(2*sizeof(Client));
+Client ajouterClient(Client *clients,  Adresse *adresse, Commande *commande) {
+    clients= (Client*) malloc(2*sizeof(Client));
     adresse = (Adresse*) malloc(2*sizeof(Adresse));
     commande = (Commande*) malloc(2*sizeof(Commande));
     int i = 0;
@@ -16,40 +16,40 @@ Client ajouterClient(Client *client,  Adresse *adresse, Commande *commande) {
     /*id client*/
     do {
         printf("Saisir l'idClient :\n");
-        scanf("%s", &client[i].idClient);
+        scanf("%s", &clients[i].idClient);
         i++;
-    }while(client[i].idClient == '\0');
+    }while(clients[i].idClient == '\0');
 
     /*nom du client*/
      do {
         printf("Saisir le nom du Client :\n");
-        scanf(" %s", &client[i].nom);
-    }while(client[i].nom =='\0');
-    
+        scanf(" %s", &clients[i].nom);
+    }while(clients[i].nom =='\0');
+
     /*prénom du client*/
     do {
         printf("Saisir le prénom du client :\n");
-        scanf("%s", &client[i].prenom);
-    }while(client[i].prenom == '\0');
-    
+        scanf("%s", &clients[i].prenom);
+    }while(clients[i].prenom == '\0');
+
    /*adresse mail du client*/
     do {
         printf("Saisir l'adresse mail du client :\n");
-        scanf(" %f", &client[i].email);
-    }while(client[i].email <= 0);
+        scanf(" %f", &clients[i].email);
+    }while(clients[i].email <= 0);
     for (j=0 ; j<5 ; j++) {
-        comp = strcmp(client[j].email, client[i].email); // A modifier !
+        comp = strcmp(clients[j].email, clients[i].email); // A modifier !
         if (comp == 0) {
             printf("ERREUR : addresse mail déjà existante\nAnnulation de la création du client");
-        return *client;
+        return *clients;
         }
     }
-   
+
     /*numero de téléphone du client*/
     do {
         printf("Saisir le numéro de téléphone du client :\n");
-        scanf(" %d", &client[i].telephone);
-    }while(client[i].telephone < 0);
+        scanf(" %d", &clients[i].telephone);
+    }while(clients[i].telephone < 0);
 
     // adresse du client
     /*rue*/
@@ -88,33 +88,36 @@ Client ajouterClient(Client *client,  Adresse *adresse, Commande *commande) {
     /*point de fidelite */
     do {
         printf("Saisir le nombre de point de fidélité du client :\n");
-        scanf(" %d", &client[i].pointsFidelite);
-    }while(client[i].pointsFidelite >= 0);
+        scanf(" %d", &clients[i].pointsFidelite);
+    }while(clients[i].pointsFidelite >= 0);
 
     /*nb de commandes*/
     do {
         printf("Saisir le nb de commandes du client :\n");
-        scanf(" %d", &client[i].nbCommandes);
-    }while(client[i].nbCommandes >= 0);
+        scanf(" %d", &clients[i].nbCommandes);
+    }while(clients[i].nbCommandes >= 0);
 
     /*capacité commande*/
     do {
         printf("Saisir la capacite de commandes du clients :\n");
-        scanf(" %d", &client[i].capaciteCommandes);
-    }while (client[i].capaciteCommandes >= client[i].nbCommandes);
+        scanf(" %d", &clients[i].capaciteCommandes);
+    }while (clients[i].capaciteCommandes >= clients[i].nbCommandes);
 
+    int nb_lig_clients = 0;
     /*historique commande*/
-    do {
-        printf("Afficher l'historique des commandes du clients");
-        fgets(*Commandes,sizeof(commande[i]) , stdin);
-    }while
+    for (i=0 ; i<nb_lig_clients ; i++) {
+        printf("%s",clients[i].commandes);
+        fgets(*commande,sizeof(commande[i]) , stdin);
+    };
+
+
 
     /*actif ou inactif ?*/
     do {
         printf(" Saisir si le client est actif : 1 ou inactif : 0 ");
-        scanf("%d",&client[i].actif);
-    }while (client[i].actif != 0 || client[i].actif != 1);
-    return *client;
+        scanf("%d",&clients[i].actif);
+    }while (clients[i].actif != 0 || clients[i].actif != 1);
+    return *clients;
 }
 
 /* Fonction modifier client */
@@ -258,4 +261,3 @@ Client afficherListeClient(Client *client,Adresse *adresse){
     }
     return *client;
     }
-

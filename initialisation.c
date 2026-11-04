@@ -8,7 +8,7 @@
 
 #define MAX_LIG 100
 
-void initialiserDonnees(Boutique *boutique, Client *client) {
+void initialiserDonnees(Boutique *boutique, Client *clients) {
     /* Catalogue produits */
     boutique->capaciteProduits = 8;
     if (boutique-> produits == NULL) {
@@ -39,11 +39,11 @@ void initialiserDonnees(Boutique *boutique, Client *client) {
     }
     boutique->nbClients = 0;
     Client listeClients[] = {
-        {1, "Pupon", "Paul", "paul.pupon.3689@gamil.fr",  "0625447154", client->adresseLivraison, 0, 0, 0, NULL,1},
-        {2, "Doufri", "Sylvie", "s.doufri@gamil.fr",  "0714222690", client->adresseLivraison, 0, 0, 0, NULL,1},
-        {3, "Bruinz", "Adaan", "adaan.bruinz.01.05.2005@gamil.fr",  "0703614968", client->adresseLivraison, 0, 0, 0, NULL,1},
-        {4, "Franchet", "Carole", "franchet.1991@gamil.fr",  "0671147031", client->adresseLivraison, 0, 0, 0, NULL,1},
-        {5, "Virontes-Martinez", "Johnny", "johnny.vm@gamil.fr",  "0788045362", client->adresseLivraison, 0, 0, 0, NULL,1}
+        {1, "Pupon", "Paul", "paul.pupon.3689@gamil.fr",  "0625447154", clients->adresseLivraison, 0, 0, 0, NULL,1},
+        {2, "Doufri", "Sylvie", "s.doufri@gamil.fr",  "0714222690", clients->adresseLivraison, 0, 0, 0, NULL,1},
+        {3, "Bruinz", "Adaan", "adaan.bruinz.01.05.2005@gamil.fr",  "0703614968", clients->adresseLivraison, 0, 0, 0, NULL,1},
+        {4, "Franchet", "Carole", "franchet.1991@gamil.fr",  "0671147031", clients->adresseLivraison, 0, 0, 0, NULL,1},
+        {5, "Virontes-Martinez", "Johnny", "johnny.vm@gamil.fr",  "0788045362", clients->adresseLivraison, 0, 0, 0, NULL,1}
     };
 
     /* Commandes */
@@ -55,11 +55,17 @@ void initialiserDonnees(Boutique *boutique, Client *client) {
     c1.lignes = (LigneCommande *)malloc(c1.capaciteLignes * sizeof(LigneCommande));
     c1.nbLignes = 1;
     c1.lignes[1] = {"AUD-0002", "Écouteurs sans fil", 1, 60.90, 60.90};
-    
-
 
 
 
 
 }
-
+void detruireBoutique(Boutique *b) {
+    for (int i = 0; i < b->nbClients; i++) {
+        for (int j = 0; j < b->clients[i].nbCommandes; j++)
+            free(b->clients[i].commandes[j].lignes);
+        free(b->clients[i].commandes);
+    }
+    free(b->clients);
+    free(b->produits);
+}

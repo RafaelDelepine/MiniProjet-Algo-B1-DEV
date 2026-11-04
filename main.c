@@ -6,6 +6,25 @@
 #include "produit.h"
 #include "statistique.h"
 #include "types.h"
+#include "utils.h"
+
+int nb_lig_commandes = 6, nb_lig_lcommandes = 6, nb_lig_dates = 6, nb_lig_adresses = 5, nb_lig_clients = 5, nb_lig_produit = 8;
+
+Produit **produits;
+Commande **commande;
+LigneCommande **ligneCommande;
+Client **client;
+Date **date;
+Adresse **adresse;
+
+void initialiserTableaux () {
+    produits = (Produit**) malloc(nb_lig_produit*sizeof(Produit));
+    commande = (Commande**) malloc(nb_lig_commandes*sizeof(Commande));
+    ligneCommande = (LigneCommande**) malloc(nb_lig_lcommandes*sizeof(LigneCommande));
+    client = (Client**) malloc(nb_lig_clients*sizeof(Client));
+    date = (Date**) malloc(nb_lig_dates*sizeof(Date));
+    adresse = (Adresse**) malloc(nb_lig_adresses*sizeof(Adresse));
+}
 
 static int lireChoix(void)
 {
@@ -18,22 +37,6 @@ static int lireChoix(void)
     return choix;
 }
 
-/* A mettre dans initialisation.c : */
-int nb_lig_commandes = 6, nb_lig_lcommandes = 6, nb_lig_dates = 6, nb_lig_adresses = 5, nb_lig_clients = 5, nb_lig_produit = 8;
-
-Produit **produit;
-produit = (Produit**) malloc(nb_lig_produit*sizeof(Produit));
-Commande **commande;
-commande = (Commande**) malloc(nb_lig_commandes*sizeof(Commande));
-LigneCommande **ligneCommande;
-ligneCommande = (LigneCommande**) malloc(nb_lig_lcommandes*sizeof(LigneCommande));
-Client **client;
-client = (Client**) malloc(nb_lig_clients*sizeof(Client));
-Date **date;
-date = (Date**) malloc(nb_lig_dates*sizeof(Date));
-Adresse **adresse;
-adresse = (Adresse**) malloc(nb_lig_adresses*sizeof(Adresse));
-
 static void menuProduits(void)
 {
     int choix;
@@ -44,24 +47,32 @@ static void menuProduits(void)
         printf("  2. Modifier un produit\n");
         printf("  3. Supprimer un produit\n");
         printf("  4. Afficher le catalogue\n");
+        printf("  5. Rechercher un produit\n");
         printf("  0. Retour au menu principal\n");
         choix = lireChoix();
 
         switch (choix)
         {
             case 1: {
-                ajouterProduit(*produit);
+                ajouterProduit(*produits);
                 break;
             }
             case 2: {
-                modifierProduit(*produit);
+                modifierProduit(*produits);
                 break;
             }
             case 3: {
-                supprimerProduit(*produit);
+                supprimerProduit(*produits);
                 break;
             }
-            case 4: afficherCatalogue(); break;
+            case 4: {
+                afficherCatalogue(*produits);
+                break;
+            }
+            case 5: {
+                rechercherProduit(*produits);
+                break;
+            }
             case 0:                      break; /* retour automatique */
             default: printf("  [!] Choix invalide.\n"); break;
         }
@@ -83,12 +94,27 @@ static void menuClients(void)
 
         switch (choix)
         {
-            case 1: ajouterClient();        break;
-            case 2: modifierClient();       break;
-            case 3: supprimerClient();      break;
-            case 4: afficherListeClients(); break;
-            case 0:                         break;
-            default: printf("  [!] Choix invalide.\n"); break;
+            switch (choix)
+            {
+                case 1: {
+                    ajouterClient(*client, *adresse, *commande);
+                    break;
+                }
+                case 2: {
+                    modifierClient(*client, *adresse);
+                    break;
+                }
+                case 3: {
+                    supprimerClient(*client, *adresse);
+                    break;
+                }
+                case 4: {
+                    afficherListeClient(*client, *adresse);
+                    break;
+                }
+                case 0:                      break; /* retour automatique */
+                default: printf("  [!] Choix invalide.\n"); break;
+            }
         }
     } while (choix != 0);
 }
@@ -106,12 +132,25 @@ static void menuCommandes(void)
 
         switch (choix) {
             case 1: {
-                creerCommande(*commande, *ligneCommande, *client, *date, *adresse, *produits, *nb_lig_commandes, *nb_lig_clients, *nb_lig_produit);
+                creerCommande(*commande, *ligneCommande, *client, *date, *adresse, *produits, &nb_lig_commandes, &nb_lig_clients, &nb_lig_produit);
                 break;
             }
-            case 2: afficherUneCommande(); break;
-            // case 3:
-            // case 4:
+            case 2: {
+                modifierSupprimerCommande(*commande, *ligneCommande, *client, *date, *adresse, *produits, &nb_lig_commandes, &nb_lig_clients);
+                break;
+            }
+            case 3: {
+                changerStatut(*commande, *client, *date, *adresse, &nb_lig_commandes);
+                break;
+            }
+            case 4: {
+                annulerCommande(*commande, *client, *date, *adresse, &nb_lig_commandes);
+                break;
+            }
+            case 5: {
+                afficherUneCommande(*commande, *ligneCommande, *client, *date, *adresse, &nb_lig_commandes);
+                break;
+            }
             case 0:                        break;
             default: printf("  [!] Choix invalide.\n"); break;
         }
@@ -142,6 +181,7 @@ static void menuStatistiques(void)
  * ========================================================================== */
 int main(void)
 {
+    initialiserTableaux();
     int choix;
 
     printf("==============================================\n");

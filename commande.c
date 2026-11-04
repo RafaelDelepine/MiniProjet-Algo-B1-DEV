@@ -187,7 +187,7 @@ Commande changerStatut(Commande *commande, Client *client, Date *date, Adresse *
             break;
         }
         case 2: {
-            *commande[choixCommande].statut = "EXPEDIEE";
+            *commande[choixCommande].statut = strcpy("EXPEDIEE");
             break;
         }
         case 3: {

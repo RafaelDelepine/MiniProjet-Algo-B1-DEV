@@ -54,7 +54,7 @@ Commande creerCommande(Commande *commande, LigneCommande *ligneCommande, Client 
             do {
                 printf("Entrez le numéro du produit commandé et la quantité, séparés par une virgule :\n");
                 scanf(" %d, %d", &choixProduit, &qteProduit);
-                nb_lig_commandes ++;
+                *commande[numCommande].lignes ++;
                 *ligneCommande[j].refProduit = *produits[choixProduit].reference;
                 *ligneCommande[j].designation = *produits[choixProduit].designation;
                 ligneCommande[j].quantite = qteProduit;
@@ -108,17 +108,17 @@ Commande modifierSupprimerCommande(Commande *commande, LigneCommande *ligneComma
         scanf(" %d", &choixAction);
         switch (choixAction) {
             case 1: {
+                /* Incrémentation */
+                commande[choixCommande]
                 printf("Produits actuels :\n");
                 for (i=0 ; i < *nb_lig_produit; i++) {
                     printf("%d. %s, %s, %s, %f, %d, %d, %d\n", i, produits[i].reference, produits[i].designation, produits[i].categorie, produits[i].prixUnitaireHT, produits[i].quantiteStock, produits[i].seuilAlerte, produits[i].actif);
                 }
-                /* Incrémentation */
-                nb_lig_commandes ++;
                 /* Saisie du / des produit(s) commandé(s) */
                 do {
                     printf("Entrez le numéro du produit commandé et la quantité, séparés par une virgule :\n");
                     scanf(" %d, %d", &choixProduit, &qteProduit);
-                    *ligneCommande[commande[choixCommande].numero].refProduit = *produits[choixProduit].reference;
+                    *commande[choixCommande].lignes ++; *ligneCommande[commande[choixCommande].numero].refProduit = *produits[choixProduit].reference;
                     *ligneCommande[commande[choixCommande].numero].designation = *produits[choixProduit].designation;
                     ligneCommande[commande[choixCommande].numero].quantite = qteProduit;
                     ligneCommande[commande[choixCommande].numero].prixUnitaireHT = produits[choixProduit].prixUnitaireHT;

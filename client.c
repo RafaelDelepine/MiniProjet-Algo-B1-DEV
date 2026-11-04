@@ -11,6 +11,7 @@ Client ajouterClient(Client *client,  Adresse *adresse, Commande *commande) {
     int i = 0;
     int j;
     int comp;
+    int longueur_adresse, longueur_ville, longueur_code_postal, longueur_pays;
 
     /*id client*/
     do {
@@ -56,29 +57,32 @@ Client ajouterClient(Client *client,  Adresse *adresse, Commande *commande) {
         printf("Saisir la rue du client");
         fgets(adresse[i].rue,sizeof(adresse[i]) , stdin);
         adresse[i].rue[strlen(adresse[i].rue)-1]='\0'; //supprimer le '\n'
-    }while(adresse[i].rue < 0 && adresse[i].rue > 79 );
+        longueur_adresse = strlen(adresse[i].rue);
+    }while(longueur_adresse < 0 && longueur_adresse > 79 );
 
     /*ville*/
-
     do {
         printf("Saisir la ville du client");
         fgets(adresse[i].ville,sizeof(adresse[i]) , stdin);
         adresse[i].ville[strlen(adresse[i].ville)-1]='\0'; // supprimer le '\n'
-    }while(adresse[i].ville < 0);
+        longueur_ville = strlen(adresse[i].ville);
+    }while(longueur_ville < 0);
 
     /*code postal*/
     do {
         printf("Saisir le code postal du client");
         fgets(adresse[i].codePostal,sizeof(adresse[i]) , stdin);
         adresse[i].codePostal[strlen(adresse[i].codePostal)-1]='\0'; // supprimer le '\n'
-    }while(adresse[i].codePostal >5);
+        longueur_code_postal = strlen(adresse[i].codePostal);
+    }while(longueur_code_postal > 5);
 
     /*pays*/
     do {
         printf("Saisir le pays du client");
         fgets(adresse[i].pays,sizeof(adresse[i]) , stdin);
         adresse[i].pays[strlen(adresse[i].pays)-1]='\0'; // supprimer le '\n'
-    }while(adresse[i].pays <0);
+        longueur_pays = strlen(adresse[i].pays);
+    }while(longueur_pays <0);
 
     //suite de client
     /*point de fidelite */
@@ -103,7 +107,7 @@ Client ajouterClient(Client *client,  Adresse *adresse, Commande *commande) {
     do {
         printf("Afficher l'historique des commandes du clients");
         fgets(*Commandes,sizeof(commande[i]) , stdin);
-    };
+    }
 
     /*actif ou inactif ?*/
     do {
@@ -235,6 +239,7 @@ Client supprimerClient(Client *clients, Adresse * adresse, Commande * commandes)
         clients = NULL;
         return *clients;
     }
+}
 
 /* Fonction afficherListeClient */
 Client afficherListeClient(Client *client,Adresse *adresse){

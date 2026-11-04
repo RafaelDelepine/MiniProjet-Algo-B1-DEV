@@ -22,7 +22,7 @@ Commande creerCommande(Commande *commande, LigneCommande *ligneCommande, Client 
     }while(r != 'O' && r != 'N');
     if (r == 'O') {
         /* Incrémentation des variables */
-        *nb_lig_commandes++;
+        *(nb_lig_commandes)++;
         numCommande = *nb_lig_commandes;
         /* Affichage des clients */
         printf("Clients actuels :\n");
@@ -182,15 +182,15 @@ Commande changerStatut(Commande *commande, Client *client, Date *date, Adresse *
     } while(choixStatut < 1 || choixStatut > 3);
     switch (choixStatut) {
         case 1: {
-            *commande[choixCommande].statut = "EN COURS";
+           strcpy(*commande[choixCommande].statut, "EN COURS");
             break;
         }
         case 2: {
-            *commande[choixCommande].statut = strcpy("EXPEDIEE");
+            strcpy(commande[choixCommande].statut,"EXPEDIEE");
             break;
         }
         case 3: {
-            *commande[choixCommande].statut = "LIVREE";
+            strcpy(commande[choixCommande].statut,"LIVREE");
             break;
         }
     }

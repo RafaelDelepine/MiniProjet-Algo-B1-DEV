@@ -94,27 +94,24 @@ static void menuClients(void)
 
         switch (choix)
         {
-            switch (choix)
-            {
-                case 1: {
-                    ajouterClient(*client, *adresse, *commande);
-                    break;
-                }
-                case 2: {
-                    modifierClient(*client, *adresse);
-                    break;
-                }
-                case 3: {
-                    supprimerClient(*client, *adresse);
-                    break;
-                }
-                case 4: {
-                    afficherListeClient(*client, *adresse);
-                    break;
-                }
-                case 0:                      break; /* retour automatique */
-                default: printf("  [!] Choix invalide.\n"); break;
+            case 1: {
+                ajouterClient(*client, *adresse, *commande);
+                break;
             }
+            case 2: {
+                modifierClient(*client, *adresse);
+                break;
+            }
+            case 3: {
+                supprimerClient(*client, *adresse);
+                break;
+            }
+            case 4: {
+                afficherListeClient(*client, *adresse);
+                break;
+            }
+            case 0:                      break; /* retour automatique */
+            default: printf("  [!] Choix invalide.\n"); break;
         }
     } while (choix != 0);
 }
@@ -188,8 +185,7 @@ int main(void)
     printf("  SHOPFLOW - Boutique en ligne (squelette)\n");
     printf("==============================================\n");
 
-    do
-    {
+    do {
         printf("\n===== MENU PRINCIPAL =====\n");
         printf("  1. Gestion des produits\n");
         printf("  2. Gestion des clients\n");

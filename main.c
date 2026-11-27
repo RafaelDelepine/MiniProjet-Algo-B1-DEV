@@ -6,7 +6,6 @@
 #include "produit.h"
 #include "statistique.h"
 #include "types.h"
-#include "utils.h"
 
 int nb_lig_commandes = 6, nb_lig_lcommandes = 6, nb_lig_dates = 6, nb_lig_adresses = 5, nb_lig_clients = 5, nb_lig_produit = 8;
 
@@ -46,8 +45,8 @@ static void menuProduits(void)
         printf("  1. Ajouter un produit\n");
         printf("  2. Modifier un produit\n");
         printf("  3. Supprimer un produit\n");
-        printf("  4. Afficher le catalogue\n");
-        printf("  5. Rechercher un produit\n");
+        // printf("  4. Afficher le catalogue\n");
+        // printf("  5. Rechercher un produit\n");
         printf("  0. Retour au menu principal\n");
         choix = lireChoix();
 
@@ -62,17 +61,17 @@ static void menuProduits(void)
                 break;
             }
             case 3: {
-                supprimerProduit(*produits);
+                supprimerProduit(*produits, *ligneCommande);
                 break;
             }
-            case 4: {
-                afficherCatalogue(*produits);
-                break;
-            }
-            case 5: {
-                rechercherProduit(*produits);
-                break;
-            }
+            // case 4: {
+            //     afficherCatalogue(*produits);
+            //     break;
+            // }
+            // case 5: {
+            //     rechercherProduit(*produits);
+            //     break;
+            // }
             case 0:                      break; /* retour automatique */
             default: printf("  [!] Choix invalide.\n"); break;
         }
@@ -95,19 +94,19 @@ static void menuClients(void)
         switch (choix)
         {
             case 1: {
-                ajouterClient(*client, *adresse, *commande);
+                ajouterClient(*client, *adresse, *commande, &nb_lig_commandes, &nb_lig_clients);
                 break;
             }
             case 2: {
-                modifierClient(*client, *adresse);
+                modifierClient(*client, *adresse, &nb_lig_clients);
                 break;
             }
             case 3: {
-                supprimerClient(*client, *adresse);
+                supprimerClient(*client, *adresse, *commande, &nb_lig_clients);
                 break;
             }
             case 4: {
-                afficherListeClient(*client, *adresse);
+                afficherListeClient(*client, *adresse, &nb_lig_clients);
                 break;
             }
             case 0:                      break; /* retour automatique */
@@ -123,7 +122,10 @@ static void menuCommandes(void)
     {
         printf("\n===== GESTION DES COMMANDES =====\n");
         printf("  1. Creer une commande\n");
-        printf("  2. Afficher une commande\n");
+        printf("  2. Modifier ou supprimer une ligne de commande\n");
+        printf("  3. Changer le statut d'une commande\n");
+        printf("  4. Annuler une commande\n");
+        printf("  5. Afficher une commande\n");
         printf("  0. Retour au menu principal\n");
         choix = lireChoix();
 
@@ -160,13 +162,13 @@ static void menuStatistiques(void)
     do
     {
         printf("\n===== STATISTIQUES =====\n");
-        printf("  1. Chiffre d'affaires global\n");
+        // printf("  1. Chiffre d'affaires global\n");
         printf("  0. Retour au menu principal\n");
         choix = lireChoix();
 
         switch (choix)
         {
-            case 1: afficherChiffreAffaires(); break;
+            // case 1: afficherChiffreAffaires(); break;
             case 0:                            break;
             default: printf("  [!] Choix invalide.\n"); break;
         }

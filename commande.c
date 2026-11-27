@@ -81,14 +81,14 @@ Commande creerCommande(Commande *commande, LigneCommande *ligneCommande, Client 
         strcpy(commande[numCommande].statut, "EN COURS");
 
         /* Calcul gain points de fidelite */
-        pointsfidelite = commande[numcommande].montantTTC/10;
+        pointsfidelite = commande[numCommande].montantTTC/10;
         printf("Le client gagne %d points de fidélité",pointsfidelite);
-        client[choixclient].pointsfidelite += pointsfidelite;
+        client[choixClient].pointsFidelite += pointsfidelite;
         
         /* Affichage du tableau mis à jour */
         printf("Commandes mises à jour :\n");
         for (i=0; i < numCommande; i++) {
-            printf("%d. %d, %d, %d/%d/%d, %s, %s, %s, %d, %.2f, %.2f, %d, %s, %s, %s, %s\n", i + 1, commande[i].numero, client[i].idClient, date[i].jour, date[i].mois, date[i].annee, commande[i].statut, ligneCommande[i].refProduit, ligneCommande[i].designation, ligneCommande[i].quantite, commande[i].montantTTC, commande[i].fraisPort, client[choixclient].pointsfidelite, adresse[i].rue, adresse[i].ville, adresse[i].codePostal, adresse[i].pays);
+            printf("%d. %d, %d, %d/%d/%d, %s, %s, %s, %d, %.2f, %.2f, %d, %s, %s, %s, %s\n", i + 1, commande[i].numero, client[i].idClient, date[i].jour, date[i].mois, date[i].annee, commande[i].statut, ligneCommande[i].refProduit, ligneCommande[i].designation, ligneCommande[i].quantite, commande[i].montantTTC, commande[i].fraisPort, client[choixClient].pointsFidelite, adresse[i].rue, adresse[i].ville, adresse[i].codePostal, adresse[i].pays);
         }
     }
     return *commande;
